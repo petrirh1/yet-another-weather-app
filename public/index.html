@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+    <link rel="manifest" href="./favicon/site.webmanifest">
+    <link rel="mask-icon" href="./favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="./style/animations.css">
+    <link rel="stylesheet" href="./style/main.css">
+    <link rel="stylesheet" href="./style/burger.css">
+    <link rel="stylesheet" href="./style/preloader.css">
+    <script src="https://kit.fontawesome.com/558d19706c.js"></script>
+    <title>Weather</title>
+</head>
+
+<body>
+    <div class="preloader">
+        <div class="loader is-active loader-bouncing" id="preloader"></div>
+    </div>
+    <div class="burger-menu">
+        <div class="burger-icon">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+        </div>
+        <div class="burger-panel">
+            <div class="options">
+                <h5 class="title">options</h5>
+                <div class="options-wrapper">
+                    <div class="theme-options">
+                        <p class="active" id="light-theme-option">light</p>
+                        <p id="dark-theme-option">dark</p>
+                    </div>
+                    <div class="unit-options">
+                        <p class="active" id="celsius-option">°C</p>
+                        <p id="fahrenheit-option">°F</p>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <ul>
+                    <li><a href="#">view on <i class="fab fa-github"></i></a></li>
+                </ul>
+            </footer>
+        </div>
+    </div>
+    <div class="main-panel">
+        <div id="location"></div>
+        <div class="weather-info">
+            <div id="temperature"></div>
+            <div id="temperature-description"></div>
+        </div>
+        <canvas id="main-icon" width="80" height="100"></canvas>
+    </div>
+    <div class="forecast">
+        <div class="forecast-card hidden" id="day-1-forecast">
+            <div id="day-1-content">
+                <div class="weekday" id="day-1-weekday"></div>
+                <div class="temperature-alt" id="day-1-temp"></div>
+                <img src="#" class="forecast-icon" id="day-1-icon" alt="icon">
+            </div>
+        </div>
+        <div class="forecast-card hidden" id="day-2-forecast">
+            <div id="day-2-content">
+                <div class="weekday" id="day-2-weekday"></div>
+                <div class="temperature-alt" id="day-2-temp"></div>
+                <img src="#" class="forecast-icon" id="day-2-icon" alt="icon">
+            </div>
+        </div>
+        <div class="forecast-card hidden" id="day-3-forecast">
+            <div id="day-3-content">
+                <div class="weekday" id="day-3-weekday"></div>
+                <div class="temperature-alt" id="day-3-temp"></div>
+                <img src="#" class="forecast-icon" id="day-3-icon" alt="icon">
+            </div>
+        </div>
+        <div class="forecast-card hidden" id="day-4-forecast">
+            <div id="day-4-content">
+                <div class="weekday" id="day-4-weekday"></div>
+                <div class="temperature-alt" id="day-4-temp"></div>
+                <img src="#" class="forecast-icon" id="day-4-icon" alt="icon">
+            </div>
+        </div>
+    </div>
+    <script src="./icons/skycons.js"></script>
+    <script src="./script/app.js"></script>
+</body>
+
+</html>
