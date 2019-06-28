@@ -43,12 +43,11 @@ window.addEventListener("load", () => {
             try {
                 const lon = position.coords.longitude;
                 const lat = position.coords.latitude;
+
                 language =
                     (navigator.languages && navigator.languages[0]) ||
                     navigator.language ||
                     navigator.userLanguage;
-
-                language = 'fi'
 
                 // api calls
                 const temp_u = temp_unit == 'celsius' ? 'metric' : 'imperial';
@@ -60,8 +59,6 @@ window.addEventListener("load", () => {
                 const data_forecast = await response_forecast.json();
                 const cod_status = data_weather.cod || data_forecast.cod; // openweathermap api status code
                 const cod_status_msg = data_weather.message || data_forecast.message; // status message
-
-                console.log(data_forecast);
 
                 if (cod_status == 200) {
                     initAnimations();
@@ -86,7 +83,6 @@ window.addEventListener("load", () => {
                     const { id: day4_iconID } = filteredData[3].weather[0];
                     const path = './icons/';
 
-                    console.log(filteredData);
                     setIcon(getMainIcon(id, sunset, sunrise), main_icon);
                     setWeekdays(language);
 
@@ -276,7 +272,7 @@ function getForecastIcon(id) {
     }
 }
 
-function filterData(data) { // incomplete! Find highest values, group by?
+function filterData(data) {
     const regexp = /([0-9]+-[0-9]+-[0-9])\w+/;
     const date_now = data.list[0].dt_txt.match(regexp)[0];
     return data = data.list.filter((v) => (v.dt_txt.indexOf('15:00:00') !== -1 && v.dt_txt.match(regexp)[0] !== date_now));

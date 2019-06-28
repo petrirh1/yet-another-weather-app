@@ -47,10 +47,10 @@
   width: 18em;
   height: 100vh;
   background-color: var(--burger-panel-bg-color);
-  -webkit-transition: .3s ease-in-out;
-  -o-transition: .3s ease-in-out;
-  -moz-transition: .3s ease-in-out;
-  transition: .3s ease-in-out;
+  -webkit-transition: right .3s ease-in-out;
+  -o-transition: right .3s ease-in-out;
+  -moz-transition: right .3s ease-in-out;
+  transition: right .3s ease-in-out;
   font-size: .9em;
 }
 
