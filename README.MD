@@ -15,7 +15,7 @@ Inside the `.env file`, prepend `API_KEY` to `your api key` provided by OpenWeat
 
 >*API_KEY=your_api_key*
 
-*please enter your key without quotes.*
+`please enter your key without quotes.`
 <br/><br/>
 
 Now you can run server.js by typing
