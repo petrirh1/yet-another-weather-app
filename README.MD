@@ -29,13 +29,6 @@ Now you can run `server.js` by typing
 node server.js
 ```
 
-or by just typing `nodemon server`
-```
-nodemon server
-```
-since it's been configured so in the `package.json` file.
-
-
 App should be running now at `localhost:3000`
 <br/><br/>
 ## icons
