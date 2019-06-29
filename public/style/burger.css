@@ -13,8 +13,8 @@
   height: 3px;
   background-color: var(--burger-icon-color);
   -webkit-border-radius: 2em;
-     -moz-border-radius: 2em;
-          border-radius: 2em;
+  -moz-border-radius: 2em;
+  border-radius: 2em;
   margin: 4px 0;
   -webkit-transition: .2s ease-in, background-color .3s ease-out;
   -o-transition: .2s ease-in, background-color .3s ease-out;
@@ -30,9 +30,9 @@
   display: flex;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
-     -moz-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -moz-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
@@ -43,14 +43,21 @@
   position: absolute;
   z-index: 3;
   top: 0;
-  right: -18em;
+  right: 0;
   width: 18em;
   height: 100vh;
   background-color: var(--burger-panel-bg-color);
-  -webkit-transition: right .3s ease-in-out;
-  -o-transition: right .3s ease-in-out;
-  -moz-transition: right .3s ease-in-out;
-  transition: right .3s ease-in-out;
+  -webkit-transform: translateX(100%);
+  -moz-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  -o-transform: translateX(100%);
+  transform: translateX(100%);
+  -webkit-transition: -webkit-transform .3s ease-in-out;
+  transition: -webkit-transform .3s ease-in-out;
+  -o-transition: -o-transform .3s ease-in-out;
+  -moz-transition: transform .3s ease-in-out, -moz-transform .3s ease-in-out;
+  transition: transform .3s ease-in-out;
+  transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out, -moz-transform .3s ease-in-out, -o-transform .3s ease-in-out;
   font-size: .9em;
 }
 
@@ -74,15 +81,15 @@
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
   -webkit-flex-direction: row;
-     -moz-box-orient: horizontal;
-     -moz-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  -moz-box-orient: horizontal;
+  -moz-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-box-pack: space-evenly;
   -webkit-justify-content: space-evenly;
-     -moz-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -moz-box-pack: space-evenly;
+  -ms-flex-pack: space-evenly;
+  justify-content: space-evenly;
 }
 
 .burger-menu .burger-panel .options .title {
@@ -107,9 +114,9 @@
   display: inherit;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
-     -moz-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -moz-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   padding-bottom: 1em;
 }
 
@@ -144,15 +151,19 @@
 }
 
 .burger-menu .slide {
-  right: 0;
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  -ms-transform: translateX(0);
+  -o-transform: translateX(0);
+  transform: translateX(0);
 }
 
 .burger-menu .active {
   color: var(--burger-panel-text-color-active) !important;
   background-color: var(--burger-panel-bg-color-active);
   -webkit-border-radius: .2em;
-     -moz-border-radius: .2em;
-          border-radius: .2em;
+  -moz-border-radius: .2em;
+  border-radius: .2em;
 }
 
 .burger-menu .active:hover {
@@ -165,10 +176,10 @@
 
 .change .bar1 {
   -webkit-transform: rotate(45deg) translate(3px, 7px);
-     -moz-transform: rotate(45deg) translate(3px, 7px);
-      -ms-transform: rotate(45deg) translate(3px, 7px);
-       -o-transform: rotate(45deg) translate(3px, 7px);
-          transform: rotate(45deg) translate(3px, 7px);
+  -moz-transform: rotate(45deg) translate(3px, 7px);
+  -ms-transform: rotate(45deg) translate(3px, 7px);
+  -o-transform: rotate(45deg) translate(3px, 7px);
+  transform: rotate(45deg) translate(3px, 7px);
 }
 
 .change .bar2 {
@@ -177,9 +188,9 @@
 
 .change .bar3 {
   -webkit-transform: rotate(-45deg) translate(3px, -7px);
-     -moz-transform: rotate(-45deg) translate(3px, -7px);
-      -ms-transform: rotate(-45deg) translate(3px, -7px);
-       -o-transform: rotate(-45deg) translate(3px, -7px);
-          transform: rotate(-45deg) translate(3px, -7px);
+  -moz-transform: rotate(-45deg) translate(3px, -7px);
+  -ms-transform: rotate(-45deg) translate(3px, -7px);
+  -o-transform: rotate(-45deg) translate(3px, -7px);
+  transform: rotate(-45deg) translate(3px, -7px);
 }
 /*# sourceMappingURL=burger.css.map */
