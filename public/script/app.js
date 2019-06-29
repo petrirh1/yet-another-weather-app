@@ -366,11 +366,23 @@ function menu() {
 //     }
 // })();
 
-console.log(window.devicePixelRatio);
-console.log(main_icon.width);
+// console.log(window.devicePixelRatio);
+// console.log(main_icon.width);
 
-const canvasDpiScaler = require('canvas-dpi-scaler'),
-    canvas = document.getElementById('main-icon'),
-    context = canvas.getContext('2d');
+const width = 80;
+const height = 80;
+const pixelRatio = window.devicePixelRatio || 1;
+const ctx = main_icon.getContext("2d")
+const canvas = main_icon;
 
-canvasDpiScaler(canvas, context); // That's it; you're done!
+canvas.width = width * pixelRatio;
+canvas.height = height * pixelRatio;
+
+canvas.style.width = `${width}px`;
+canvas.style.height = `${height}px`;
+
+// for sprites scaled up to retina resolution
+ctx.mozImageSmoothingEnabled = false;
+ctx.imageSmoothingEnabled = false;
+
+ctx.scale(pixelRatio, pixelRatio);

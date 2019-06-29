@@ -63,7 +63,12 @@ body {
     align-items: center;
     margin-top: -12em; // kinda hacky..
 
-    #main-icon { padding: 4em; }
+    #main-icon { 
+        padding: 4em;
+        image-rendering: -moz-crisp-edges;    /* Firefox */
+        image-rendering: -webkit-crisp-edges; /* Webkit (Safari) */
+        image-rendering: crisp-edges;           /* Chrome */
+     }
     #location { font-size: 1.5em; }
     #location, .weather-info { text-align: center; }
 
@@ -120,7 +125,7 @@ body {
 .degree::after { content: '°'; }
 
 .fade { background-color: var(--fade-color); }
-.scale { transform: scale3d(.5) }
+.scale { transform: scale3d(.5, .5, .5) }
 
 .delay-025 { animation-delay: .25s }
 .delay-050 { animation-delay: .50s }

@@ -99,6 +99,12 @@ body {
 
 .main-panel #main-icon {
   padding: 4em;
+  image-rendering: -moz-crisp-edges;
+  /* Firefox */
+  image-rendering: -webkit-crisp-edges;
+  /* Webkit (Safari) */
+  image-rendering: crisp-edges;
+  /* Chrome */
 }
 
 .main-panel #location {
@@ -185,9 +191,9 @@ body {
 }
 
 .scale {
-  -webkit-transform: scale3d(0.5);
-     -moz-transform: scale3d(0.5);
-          transform: scale3d(0.5);
+  -webkit-transform: scale3d(0.5, 0.5, 0.5);
+     -moz-transform: scale3d(0.5, 0.5, 0.5);
+          transform: scale3d(0.5, 0.5, 0.5);
 }
 
 .delay-025 {
