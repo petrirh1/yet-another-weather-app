@@ -355,10 +355,10 @@ function menu() {
     ) {
         main_icon.width = 256;
         main_icon.height = 256;
-        main_icon.classList.toggle('scale');
+        main_icon.classList.add('scale');
     } else {
         main_icon.width = 80;
         main_icon.height = 80;
-        main_icon.classList.toggle('scale');
+        main_icon.classList.remove('scale');
     }
 })();
