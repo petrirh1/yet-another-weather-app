@@ -1,10 +1,10 @@
 # yet-another-weather-app
 
-yet-another-weather-app is a weather forecast app written in JavaScript.
-
+yet-another-weather-app is a weather forecast app written in JavaScript.   
+<br>
 ![alt tag](https://i.imgur.com/1EQIeRo.png "this is just a screenshot")
 
-## Running locally
+## running locally
 
 You'll need a personal [OpenWeatherMap](https://openweathermap.org/api) API key.
 
@@ -16,16 +16,29 @@ Inside the `.env file`, prepend `API_KEY` to `your api key` provided by OpenWeat
 >*API_KEY=your_api_key*
 
 `please enter your key without quotes.`
-<br/><br/>
+<br/><br/><br/>
 
-Now you can run server.js by typing
+Run `npm install` to download depencies.
+
+```
+npm install
+```
+<br/>
+Now you can run `server.js` by typing
 
 ```
 node server.js
 ```
 
-or by typing
+or by typing `nodemon server.js`
 ```
 nodemon server.js
 ```
 if you're using nodemon.
+
+
+App should be running now at `localhost:3000`
+
+## icons
+
+Icons that are used in this project are [Skycons](https://darkskyapp.github.io/skycons/).
