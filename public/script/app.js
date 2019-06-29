@@ -344,6 +344,7 @@ function menu() {
     }
 }
 
+// let isMobile = true;
 // (function isMobile() {
 //     if (navigator.userAgent.match(/Android/i)
 //         || navigator.userAgent.match(/webOS/i)
@@ -351,11 +352,13 @@ function menu() {
 //         || navigator.userAgent.match(/iPad/i)
 //         || navigator.userAgent.match(/iPod/i)
 //         || navigator.userAgent.match(/BlackBerry/i)
-//         || navigator.userAgent.match(/Windows Phone/i)
+//         || navigator.userAgent.match(/Windows Phone/i || isMobile)
 //     ) {
-//         main_icon.width = 120;
-//         main_icon.height = 120;
+//         let scale = window.devicePixelRatio;
+//         main_icon.width = main_icon.width * scale;
+//         main_icon.height = main_icon.height * scale;
 //         main_icon.classList.add('scale');
+//         console.log('scaled!');
 //     } else {
 //         main_icon.width = 80;
 //         main_icon.height = 80;
@@ -363,5 +366,11 @@ function menu() {
 //     }
 // })();
 
-context = main_icon.getContext('2d');
-context.scale(2, 2);
+console.log(window.devicePixelRatio);
+console.log(main_icon.width);
+
+const canvasDpiScaler = require('canvas-dpi-scaler'),
+    canvas = document.getElementById('main_icon'),
+    context = canvas.getContext('2d');
+
+canvasDpiScaler(canvas, context); // That's it; you're done!
