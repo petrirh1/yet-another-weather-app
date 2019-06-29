@@ -344,45 +344,15 @@ function menu() {
     }
 }
 
-// let isMobile = true;
-// (function isMobile() {
-//     if (navigator.userAgent.match(/Android/i)
-//         || navigator.userAgent.match(/webOS/i)
-//         || navigator.userAgent.match(/iPhone/i)
-//         || navigator.userAgent.match(/iPad/i)
-//         || navigator.userAgent.match(/iPod/i)
-//         || navigator.userAgent.match(/BlackBerry/i)
-//         || navigator.userAgent.match(/Windows Phone/i || isMobile)
-//     ) {
-//         let scale = window.devicePixelRatio;
-//         main_icon.width = main_icon.width * scale;
-//         main_icon.height = main_icon.height * scale;
-//         main_icon.classList.add('scale');
-//         console.log('scaled!');
-//     } else {
-//         main_icon.width = 80;
-//         main_icon.height = 80;
-//         main_icon.classList.remove('scale');
-//     }
-// })();
-
-// console.log(window.devicePixelRatio);
-// console.log(main_icon.width);
-
-const width = 80;
-const height = 80;
-const pixelRatio = window.devicePixelRatio || 1;
-const ctx = main_icon.getContext("2d")
-const canvas = main_icon;
-
-canvas.width = width * pixelRatio;
-canvas.height = height * pixelRatio;
-
-canvas.style.width = `${width}px`;
-canvas.style.height = `${height}px`;
-
-// for sprites scaled up to retina resolution
-ctx.mozImageSmoothingEnabled = false;
-ctx.imageSmoothingEnabled = false;
-
-ctx.scale(pixelRatio, pixelRatio);
+(function dpiScaling() { // this is used for scaling canvas properly on mobile
+    const width = main_icon.width;
+    const height = main_icon.height;
+    const pixelRatio = window.devicePixelRatio || 1;
+    const ctx = main_icon.getContext("2d")
+    const canvas = main_icon;
+    canvas.width = width * pixelRatio;
+    canvas.height = height * pixelRatio;
+    canvas.style.width = `${width}px`;
+    canvas.style.height = `${height}px`;
+    ctx.scale(pixelRatio, pixelRatio);
+})();
