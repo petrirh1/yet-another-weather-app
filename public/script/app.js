@@ -175,7 +175,7 @@ function initAnimations() {
 
 function setIcon(id, iconID) {
     const skycons = new Skycons({
-        "color": theme == 'light' ? light_color : dark_color, 'resizeClear': true
+        'color': theme == 'light' ? light_color : dark_color, 'resizeClear': true
     });
     skycons.play();
     return skycons.set(iconID, Skycons[id]);
@@ -343,3 +343,17 @@ function menu() {
         location_name.classList.toggle('fade-in-opacity');
     }
 }
+
+(function isMobile() {
+    if (navigator.userAgent.match(/Android/i)
+        || navigator.userAgent.match(/webOS/i)
+        || navigator.userAgent.match(/iPhone/i)
+        || navigator.userAgent.match(/iPad/i)
+        || navigator.userAgent.match(/iPod/i)
+        || navigator.userAgent.match(/BlackBerry/i)
+        || navigator.userAgent.match(/Windows Phone/i)
+    ) {
+        main_icon.width = 256;
+        main_icon.height = 256;
+    }
+})();
