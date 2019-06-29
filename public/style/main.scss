@@ -120,8 +120,6 @@ body {
 .degree::after { content: '°'; }
 
 .fade { background-color: var(--fade-color); }
-.scale { transform: scale(.7) }
-
 .delay-025 { animation-delay: .25s }
 .delay-050 { animation-delay: .50s }
 .delay-075 { animation-delay: .75s }

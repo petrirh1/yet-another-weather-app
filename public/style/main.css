@@ -184,14 +184,6 @@ body {
   background-color: var(--fade-color);
 }
 
-.scale {
-  -webkit-transform: scale(0.7);
-     -moz-transform: scale(0.7);
-      -ms-transform: scale(0.7);
-       -o-transform: scale(0.7);
-          transform: scale(0.7);
-}
-
 .delay-025 {
   -webkit-animation-delay: .25s;
      -moz-animation-delay: .25s;
