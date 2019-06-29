@@ -344,21 +344,40 @@ function menu() {
     }
 }
 
-(function isMobile() {
-    if (navigator.userAgent.match(/Android/i)
-        || navigator.userAgent.match(/webOS/i)
-        || navigator.userAgent.match(/iPhone/i)
-        || navigator.userAgent.match(/iPad/i)
-        || navigator.userAgent.match(/iPod/i)
-        || navigator.userAgent.match(/BlackBerry/i)
-        || navigator.userAgent.match(/Windows Phone/i)
-    ) {
-        main_icon.width = 120;
-        main_icon.height = 120;
-        main_icon.classList.add('scale');
-    } else {
-        main_icon.width = 80;
-        main_icon.height = 80;
-        main_icon.classList.remove('scale');
-    }
+// (function isMobile() {
+//     if (navigator.userAgent.match(/Android/i)
+//         || navigator.userAgent.match(/webOS/i)
+//         || navigator.userAgent.match(/iPhone/i)
+//         || navigator.userAgent.match(/iPad/i)
+//         || navigator.userAgent.match(/iPod/i)
+//         || navigator.userAgent.match(/BlackBerry/i)
+//         || navigator.userAgent.match(/Windows Phone/i)
+//     ) {
+//         main_icon.width = 120;
+//         main_icon.height = 120;
+//         main_icon.classList.add('scale');
+//     } else {
+//         main_icon.width = 80;
+//         main_icon.height = 80;
+//         main_icon.classList.remove('scale');
+//     }
+// })();
+
+//get DPI
+let dpi = window.devicePixelRatio;
+//get canvas
+let canvas = main_icon;
+//get context
+let ctx = canvas.getContext('2d');
+
+(function fix_dpi() {
+    //get CSS height
+    //the + prefix casts it to an integer
+    //the slice method gets rid of "px"
+    let style_height = +getComputedStyle(canvas).getPropertyValue("height").slice(0, -2);
+    //get CSS width
+    let style_width = +getComputedStyle(canvas).getPropertyValue("width").slice(0, -2);
+    //scale the canvas
+    canvas.setAttribute('height', style_height * dpi);
+    canvas.setAttribute('width', style_width * dpi);
 })();
