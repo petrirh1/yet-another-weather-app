@@ -7,7 +7,7 @@
     "start": "node server",
     "start:dev": "nodemon server"
   },
-  "author": "prh",
+  "author": "petrirh1",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^8.0.0",
