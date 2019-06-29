@@ -34,5 +34,6 @@ App should be running now at `localhost:3000`
 ## icons
 
 Icons that are used in this project are [Skycons](https://darkskyapp.github.io/skycons/).
-</br></br>
+
+## preview
 You can see the app in action [here](https://yet-another-weather-app-x.herokuapp.com/).
