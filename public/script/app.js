@@ -370,7 +370,7 @@ console.log(window.devicePixelRatio);
 console.log(main_icon.width);
 
 const canvasDpiScaler = require('canvas-dpi-scaler'),
-    canvas = document.getElementById('main_icon'),
+    canvas = document.getElementById('main-icon'),
     context = canvas.getContext('2d');
 
 canvasDpiScaler(canvas, context); // That's it; you're done!
