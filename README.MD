@@ -3,7 +3,7 @@
 yet-another-weather-app is a weather forecast app written in JavaScript.   
 <br>
 ![alt tag](https://i.imgur.com/1EQIeRo.png "this is just a screenshot")
-
+<br><br>
 ## running locally
 
 You'll need a personal [OpenWeatherMap](https://openweathermap.org/api) API key.
@@ -30,15 +30,15 @@ Now you can run `server.js` by typing
 node server.js
 ```
 
-or by typing `nodemon server.js`
+or by just typing `nodemon server`
 ```
-nodemon server.js
+nodemon server
 ```
-if you're using nodemon.
+since it's been configured so in the `package.json.`
 
 
 App should be running now at `localhost:3000`
-
+<br><br>
 ## icons
 
 Icons that are used in this project are [Skycons](https://darkskyapp.github.io/skycons/).
