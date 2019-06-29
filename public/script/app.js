@@ -353,8 +353,8 @@ function menu() {
         || navigator.userAgent.match(/BlackBerry/i)
         || navigator.userAgent.match(/Windows Phone/i)
     ) {
-        main_icon.width = 256;
-        main_icon.height = 256;
+        main_icon.width = 160;
+        main_icon.height = 160;
         main_icon.classList.add('scale');
     } else {
         main_icon.width = 80;
