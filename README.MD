@@ -23,7 +23,6 @@ Run `npm install` to download depencies.
 ```
 npm install
 ```
-<br/>
 Now you can run `server.js` by typing
 
 ```
@@ -38,7 +37,7 @@ since it's been configured so in the `package.json` file.
 
 
 App should be running now at `localhost:3000`
-<br><br>
+<br/><br/>
 ## icons
 
 Icons that are used in this project are [Skycons](https://darkskyapp.github.io/skycons/).
