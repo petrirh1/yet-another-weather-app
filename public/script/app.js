@@ -62,8 +62,6 @@ window.addEventListener("load", () => {
                 const cod_status = data_weather.cod || data_forecast.cod; // openweathermap api status code
                 const cod_status_msg = data_weather.message || data_forecast.message; // status message
 
-                console.log(data_weather);
-
                 if (cod_status == 200) {
                     initAnimations();
 
