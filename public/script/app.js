@@ -230,7 +230,6 @@ function getMainIcon(id, sunset, sunrise) {
 }
 
 function setWeekdays(locale) {
-    locale = 'fi-en'
     const today = new Date();
     let day1 = new Date(),
         day2 = new Date(),
