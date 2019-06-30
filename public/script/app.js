@@ -41,13 +41,15 @@ window.addEventListener("load", () => {
     if ('geolocation' in navigator) {
         navigator.geolocation.getCurrentPosition(async function (position) {
             try {
-                const lon = position.coords.longitude;
                 const lat = position.coords.latitude;
+                const lon = position.coords.longitude;
 
                 language =
                     (navigator.languages && navigator.languages[0]) ||
                     navigator.language ||
                     navigator.userLanguage;
+
+                language = shortenLangCode(language);
 
                 // api calls
                 const temp_u = temp_unit == 'celsius' ? 'metric' : 'imperial';
@@ -59,6 +61,8 @@ window.addEventListener("load", () => {
                 const data_forecast = await response_forecast.json();
                 const cod_status = data_weather.cod || data_forecast.cod; // openweathermap api status code
                 const cod_status_msg = data_weather.message || data_forecast.message; // status message
+
+                console.log(data_weather);
 
                 if (cod_status == 200) {
                     initAnimations();
@@ -226,6 +230,7 @@ function getMainIcon(id, sunset, sunrise) {
 }
 
 function setWeekdays(locale) {
+    locale = 'fi-en'
     const today = new Date();
     let day1 = new Date(),
         day2 = new Date(),
@@ -270,6 +275,13 @@ function getForecastIcon(id) {
         }
         return icon += theme == 'light' ? '-light.svg' : '-dark.svg';
     }
+}
+
+function shortenLangCode(lang) {
+    if (lang.includes("-")) {
+        lang = lang.substring(0, lang.indexOf("-"));
+    }
+    return lang;
 }
 
 function filterData(data) {
