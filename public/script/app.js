@@ -277,7 +277,10 @@ function getForecastIcon(id) {
 }
 
 function shortenLangCode(lang) {
-    if (lang.includes("-")) {
+    if (lang == null) {
+        lang = default_language;
+    }
+    else if (lang.includes("-")) {
         lang = lang.substring(0, lang.indexOf("-"));
     }
     return lang;
