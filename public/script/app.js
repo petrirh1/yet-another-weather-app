@@ -142,7 +142,8 @@ function initAnimations() {
     });
 
     setTimeout(() => {
-        preloader.classList.remove('is-active', 'loader-bouncing', 'fade-out');
+        preloader.className = ''; // removes preloader in order to make burger menu accessible
+        main_panel.className = 'main-panel'; // clears other classes
     }, 900);
 
 }
@@ -353,7 +354,7 @@ function menu() {
 
     if (document.documentElement.getAttribute('data-theme') == 'dark') {
         forecast.classList.toggle('fade-in-opacity');
-        location_name.classList.toggle('fade-in-opacity');
+        main_panel.classList.toggle('fade-in-opacity');
     }
 }
 
