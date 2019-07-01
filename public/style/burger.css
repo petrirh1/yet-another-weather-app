@@ -56,7 +56,6 @@
   transition: -webkit-transform .3s ease-in-out;
   -o-transition: -o-transform .3s ease-in-out;
   -moz-transition: transform .3s ease-in-out, -moz-transform .3s ease-in-out;
-  transition: transform .3s ease-in-out;
   transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out, -moz-transform .3s ease-in-out, -o-transform .3s ease-in-out;
   font-size: .9em;
 }

@@ -277,6 +277,7 @@ function getForecastIcon(id) {
 function shortenLangCode(lang) {
     if (lang == null) {
         lang = default_language;
+        throw Error('INVALID_LANGUAGE_VALUE!');
     }
     else if (lang.includes("-")) {
         lang = lang.substring(0, lang.indexOf("-"));

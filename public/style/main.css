@@ -26,8 +26,8 @@ html[data-theme="dark"] body {
 
 html[data-theme="dark"] .main-panel {
   -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
+     -moz-box-shadow: none;
+          box-shadow: none;
 }
 
 body {
@@ -43,20 +43,18 @@ body {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
-  -moz-box-orient: vertical;
-  -moz-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: space-evenly;
-  -webkit-justify-content: space-evenly;
-  -moz-box-pack: space-evenly;
-  -ms-flex-pack: space-evenly;
-  justify-content: space-evenly;
+     -moz-box-orient: vertical;
+     -moz-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-justify-content: space-around;
+      -ms-flex-pack: distribute;
+          justify-content: space-around;
   -webkit-box-align: center;
   -webkit-align-items: center;
-  -moz-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+     -moz-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   background-color: var(--bg);
   color: var(--text-color-main);
   -webkit-transition: background-color .3s ease-in-out;
@@ -85,16 +83,15 @@ body {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
-  -moz-box-orient: vertical;
-  -moz-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
+     -moz-box-orient: vertical;
+     -moz-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-align: center;
   -webkit-align-items: center;
-  -moz-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  margin-top: -14em;
+     -moz-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .main-panel #main-icon {
@@ -113,9 +110,9 @@ body {
   max-width: 350px;
   -webkit-box-ordinal-group: 4;
   -webkit-order: 3;
-  -moz-box-ordinal-group: 4;
-  -ms-flex-order: 3;
-  order: 3;
+     -moz-box-ordinal-group: 4;
+      -ms-flex-order: 3;
+          order: 3;
 }
 
 .main-panel .weather-info #temperature {
@@ -134,19 +131,19 @@ body {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
   -webkit-flex-direction: row;
-  -moz-box-orient: horizontal;
-  -moz-box-direction: normal;
-  -ms-flex-direction: row;
-  flex-direction: row;
+     -moz-box-orient: horizontal;
+     -moz-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   text-align: center;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
-  -moz-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+     -moz-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-flex-wrap: nowrap;
-  -ms-flex-wrap: nowrap;
-  flex-wrap: nowrap;
+      -ms-flex-wrap: nowrap;
+          flex-wrap: nowrap;
   max-width: 420px;
   width: 90vw;
   font-size: 1.1em;
@@ -184,47 +181,41 @@ body {
   background-color: var(--fade-color);
 }
 
-.scale {
-  -webkit-transform: scale3d(0.5, 0.5, 0.5);
-  -moz-transform: scale3d(0.5, 0.5, 0.5);
-  transform: scale3d(0.5, 0.5, 0.5);
-}
-
 .delay-025 {
   -webkit-animation-delay: .25s;
   -moz-animation-delay: .25s;
-  -o-animation-delay: .25s;
-  animation-delay: .25s;
+    -o-animation-delay: .25s;
+       animation-delay: .25s;
 }
 
 .delay-050 {
   -webkit-animation-delay: .50s;
   -moz-animation-delay: .50s;
-  -o-animation-delay: .50s;
-  animation-delay: .50s;
+    -o-animation-delay: .50s;
+       animation-delay: .50s;
 }
 
 .delay-075 {
   -webkit-animation-delay: .75s;
   -moz-animation-delay: .75s;
-  -o-animation-delay: .75s;
-  animation-delay: .75s;
+    -o-animation-delay: .75s;
+       animation-delay: .75s;
 }
 
 .delay-100 {
   -webkit-animation-delay: 1s;
   -moz-animation-delay: 1s;
-  -o-animation-delay: 1s;
-  animation-delay: 1s;
+    -o-animation-delay: 1s;
+       animation-delay: 1s;
 }
 
 @media only screen and (min-width: 835px) {
   body {
     -webkit-box-pack: start;
     -webkit-justify-content: flex-start;
-    -moz-box-pack: start;
-    -ms-flex-pack: start;
-    justify-content: flex-start;
+       -moz-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
   }
   .main-panel {
     position: relative;
@@ -232,39 +223,39 @@ body {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
     -webkit-flex-direction: row;
-    -moz-box-orient: horizontal;
-    -moz-box-direction: normal;
-    -ms-flex-direction: row;
-    flex-direction: row;
+       -moz-box-orient: horizontal;
+       -moz-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
     -webkit-justify-content: space-around;
-    -ms-flex-pack: distribute;
-    justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
     margin-top: 10em;
     max-width: 900px;
     min-height: 240px;
     min-width: 800px;
     -webkit-border-radius: .3em;
-    -moz-border-radius: .3em;
-    border-radius: .3em;
+       -moz-border-radius: .3em;
+            border-radius: .3em;
     word-break: break-word;
     background-color: var(--main-panel-bg-color);
     -webkit-box-shadow: 0px 60px 125px 0px rgba(0, 0, 0, 0.07);
-    -moz-box-shadow: 0px 60px 125px 0px rgba(0, 0, 0, 0.07);
-    box-shadow: 0px 60px 125px 0px rgba(0, 0, 0, 0.07);
+       -moz-box-shadow: 0px 60px 125px 0px rgba(0, 0, 0, 0.07);
+            box-shadow: 0px 60px 125px 0px rgba(0, 0, 0, 0.07);
   }
   .main-panel #main-icon {
     padding: 0;
     -webkit-box-ordinal-group: 4;
     -webkit-order: 3;
-    -moz-box-ordinal-group: 4;
-    -ms-flex-order: 3;
-    order: 3;
+       -moz-box-ordinal-group: 4;
+        -ms-flex-order: 3;
+            order: 3;
   }
   .main-panel #location, .main-panel #main-icon, .main-panel .weather-info {
-    -webkit-align-self: center;
-    -ms-flex-item-align: center;
     -ms-grid-row-align: center;
-    align-self: center;
+    -webkit-align-self: center;
+        -ms-flex-item-align: center;
+            align-self: center;
   }
   .main-panel .weather-info {
     max-width: 270px;
@@ -281,8 +272,8 @@ body {
     transition: background-color .4s ease-in;
     padding: 1.4em 2em 1.4em 2em;
     -webkit-border-radius: .3em;
-    -moz-border-radius: .3em;
-    border-radius: .3em;
+       -moz-border-radius: .3em;
+            border-radius: .3em;
   }
   .hidden, .visible {
     -webkit-transition: opacity .4s ease-in;
