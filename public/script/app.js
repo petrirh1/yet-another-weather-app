@@ -171,7 +171,7 @@ function applySettings(e) {
         saveSettings();
     }
     else if (cancel_btn.contains(e.target)) {
-        menu();
+        toggleMenu();
     }
 }
 
@@ -196,7 +196,7 @@ document.querySelector('div:not(.options-wrapper)').addEventListener('click', ()
     observer.disconnect();
 });
 
-function menu() {
+function toggleMenu() {
     loadSettings();
 
     burger_icon.classList.toggle('change');
@@ -209,7 +209,7 @@ function menu() {
     }
 }
 
-document.querySelector('.burger-icon').addEventListener('click', menu);
+document.querySelector('.burger-icon').addEventListener('click', toggleMenu);
 document.addEventListener("click", closeMenu);
 document.addEventListener("touchend", closeMenu);
 
@@ -217,7 +217,7 @@ function closeMenu(e) {
     if (burger_panel.contains(e.target) || burger_icon.contains(e.target)) {
         return;
     } else if (burger_panel.classList.contains('slide')) {
-        menu();
+        toggleMenu();
     }
 }
 
