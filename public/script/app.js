@@ -25,17 +25,22 @@ const forecast = document.querySelector('.forecast');
 const forecast_card = document.querySelector('.forecast-card');
 const burger_icon = document.querySelector('.burger-icon');
 const burger_panel = document.querySelector('.burger-panel');
+const save_btn = document.getElementById('apply-btn');
+const cancel_btn = document.getElementById('cancel-btn');
 const light_theme_option = document.getElementById('light-theme-option');
 const dark_theme_option = document.getElementById('dark-theme-option');
 const celsius_option = document.getElementById('celsius-option');
 const fahrenheit_option = document.getElementById('fahrenheit-option');
+const current_theme = localStorage.getItem('theme');
+const current_unit = localStorage.getItem('unit');
 const preloader = document.getElementById('preloader');
 const light_color = '#606e79';
-const dark_color = '#FFFFFF';
+const dark_color = '#FFF';
 const default_language = 'en';
 let language;
 let temp_unit;
 let theme;
+loadSettings();
 
 window.addEventListener("load", () => {
     if ('geolocation' in navigator) {
@@ -63,7 +68,7 @@ window.addEventListener("load", () => {
                 const cod_status_msg = data_weather.message || data_forecast.message; // status message
 
                 if (cod_status == 200) {
-                    initAnimations();
+                    init();
 
                     // current weather
                     const { name } = data_weather;
@@ -114,7 +119,7 @@ window.addEventListener("load", () => {
     }
 });
 
-function initAnimations() {
+function init() {
     preloader.classList.add('fade-out');
 
     if (window.matchMedia("(max-width: 980px)").matches) {
@@ -146,13 +151,112 @@ function initAnimations() {
         main_panel.className = 'main-panel'; // clears other classes
     }, 900);
 
+    document.addEventListener('keydown', (e) => { // disable tabulator
+        if (e.keycode === 9 || e.which === 9) {
+            e.preventDefault();
+        }
+    });
 }
 
-(function loadSettings() {
-    const current_theme = localStorage.getItem('theme');
-    const current_unit = localStorage.getItem('temp_unit');
+/*********************** menu ***********************/
+
+save_btn.addEventListener('click', applySettings);
+cancel_btn.addEventListener('click', applySettings);
+
+function applySettings(e) {
+    if (e.target.classList.contains('disabled')) {
+        return
+    }
+    else if (save_btn.contains(e.target)) {
+        saveSettings();
+    }
+    else if (cancel_btn.contains(e.target)) {
+        menu();
+    }
+}
+
+// monitor changes
+const observer = new MutationObserver((e) => {
+    save_btn.classList.remove('disabled');
+    cancel_btn.classList.remove('disabled');
+});
+
+document.querySelector('.options-wrapper').addEventListener('click', () => {
+    observer.observe(document.querySelector('.options-wrapper'), {
+        attributes: true,
+        characterData: true,
+        childList: true,
+        subtree: true,
+        attributeOldValue: true,
+        characterDataOldValue: true
+    });
+});
+
+document.querySelector('div:not(.options-wrapper)').addEventListener('click', () => {
+    observer.disconnect();
+});
+
+function menu() {
+    loadSettings();
+
+    burger_icon.classList.toggle('change');
+    burger_panel.classList.toggle('slide');
+    document.body.classList.toggle('fade');
+
+    if (document.documentElement.getAttribute('data-theme') == 'dark') {
+        forecast.classList.toggle('fade-in-opacity');
+        main_panel.classList.toggle('fade-in-opacity');
+    }
+}
+
+document.querySelector('.burger-icon').addEventListener('click', menu);
+document.addEventListener("click", closeMenu);
+document.addEventListener("ontouchstart", closeMenu);
+
+function closeMenu(e) {
+    console.log(e);
+    if (burger_panel.contains(e.target) || burger_icon.contains(e.target)) {
+        return;
+    } else if (burger_panel.classList.contains('slide')) {
+        menu();
+    }
+}
+
+document.querySelector('.options-wrapper').addEventListener('click', (e) => {
+    if (light_theme_option.contains(e.target) || dark_theme_option.contains(e.target)) {
+        if (e.target.classList.contains('active')) {
+            return
+        } else {
+            light_theme_option.classList.toggle('active');
+            dark_theme_option.classList.toggle('active');
+        }
+    }
+    if (celsius_option.contains(e.target) || fahrenheit_option.contains(e.target)) {
+        if (e.target.classList.contains('active')) {
+            return
+        } else {
+            celsius_option.classList.toggle('active');
+            fahrenheit_option.classList.toggle('active');
+        }
+    }
+});
+
+/*********************** menu ends ***********************/
+
+function saveSettings() {
+    const active_els = document.querySelector('.options-wrapper').getElementsByClassName('active');
+    let theme_selection = active_els[0].id.split('-')[0];
+    let unit_selection = active_els[1].id.split('-')[0];
+    localStorage.setItem('theme', theme_selection);
+    localStorage.setItem('unit', unit_selection);
+    location.reload();
+}
+
+function loadSettings() {
     const class_name = 'active';
     const els = document.getElementsByClassName(class_name);
+    save_btn.classList.add('disabled');
+    cancel_btn.classList.add('disabled');
 
     // clear class 'active' from all elements
     while (els[0]) {
@@ -174,7 +278,7 @@ function initAnimations() {
         fahrenheit_option.classList.toggle(class_name);
         temp_unit = 'fahrenheit';
     }
-})();
+}
 
 function setIcon(id, iconID) {
     const skycons = new Skycons({
@@ -290,72 +394,6 @@ function filterData(data) {
     const regexp = /([0-9]+-[0-9]+-[0-9])\w+/;
     const date_now = data.list[0].dt_txt.match(regexp)[0];
     return data = data.list.filter((v) => (v.dt_txt.indexOf('15:00:00') !== -1 && v.dt_txt.match(regexp)[0] !== date_now));
-}
-
-function toggleTempUnit(unit) {
-    const els = document.querySelectorAll('#temperature, .temperature-alt');
-    unit = unit == 'celsius' ? 'celsius' : 'fahrenheit';
-
-    els.forEach((element) => {
-        element.textContent = tempUnitConversion(element.textContent, unit);
-    });
-    temp_unit = unit;
-}
-
-function tempUnitConversion(value, unit) {
-    if (unit == 'fahrenheit') {
-        return Math.round(value * 9 / 5 + 32);
-    } else if (unit == 'celsius') {
-        return Math.round((value - 32) * 5 / 9);
-    }
-}
-
-document.querySelector('.burger-icon').addEventListener('click', menu);
-document.addEventListener("click", function (e) {
-    if (burger_panel.contains(e.target) || burger_icon.contains(e.target)) {
-        return;
-    } else if (burger_panel.classList.contains('slide')) {
-        menu();
-    }
-});
-
-document.querySelector('.options-wrapper').addEventListener('click', (e) => {
-    let current_theme;
-    let current_temp_unit;
-
-    if (light_theme_option.contains(e.target) || dark_theme_option.contains(e.target)) {
-        if (e.target.classList.contains('active')) {
-            return
-        } else {
-            light_theme_option.classList.toggle('active');
-            dark_theme_option.classList.toggle('active');
-            location.reload();
-        }
-        current_theme = light_theme_option.classList.contains('active') ? 'light' : 'dark';
-        localStorage.setItem('theme', current_theme);
-    }
-    if (celsius_option.contains(e.target) || fahrenheit_option.contains(e.target)) {
-        if (e.target.classList.contains('active')) {
-            return
-        } else {
-            celsius_option.classList.toggle('active');
-            fahrenheit_option.classList.toggle('active');
-            current_temp_unit = celsius_option.classList.contains('active') ? 'celsius' : 'fahrenheit';
-            localStorage.setItem('temp_unit', current_temp_unit);
-            toggleTempUnit(current_temp_unit);
-        }
-    }
-});
-
-function menu() {
-    burger_icon.classList.toggle('change');
-    burger_panel.classList.toggle('slide');
-    document.body.classList.toggle('fade');
-
-    if (document.documentElement.getAttribute('data-theme') == 'dark') {
-        forecast.classList.toggle('fade-in-opacity');
-        main_panel.classList.toggle('fade-in-opacity');
-    }
 }
 
 (function dpiScaling() { // this is used for scaling canvas properly on mobile

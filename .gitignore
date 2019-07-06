@@ -1,6 +1,5 @@
-.env
-.vscode
+*.env
+*.vscode
 node_modules/
-*.css.map
-*.scss.map
+*.map
 *.scss

@@ -6,21 +6,32 @@ html, body {
   overflow-x: hidden;
 }
 
+::-moz-selection {
+  color: white;
+  background: lightgrey;
+}
+
+::selection {
+  color: white;
+  background: lightgrey;
+}
+
 html[data-theme="dark"] body {
   --bg: #272527;
   --text-color-main: white;
   --text-color-weather-description: rgb(145, 145, 145);
-  --main-panel-bg-color: rgb(29, 27, 29);
+  --main-panel-bg-color: rgb(19, 17, 19);
   --weekday-text-color: #ffffff62;
   --forecast-card-bg-color: rgba(124, 120, 124, 0.100);
   --fade-color: #222022;
   --burger-icon-color: rgb(68, 65, 68);
   --burger-icon-color-hover: rgb(105, 100, 105);
-  --burger-panel-text-color: rgb(145, 145, 145);
-  --burger-panel-text-color-hover: #ff6768;
-  --burger-panel-text-color-active: white;
-  --burger-panel-bg-color-active: #bfc8d049;
-  --burger-panel-bg-color: #161516;
+  --burger-panel-text-color: rgb(151, 151, 151);
+  --burger-panel-text-color-active: #cecece;
+  --burger-panel-text-color-active-hover: #ebebeb;
+  --burger-panel-bg-color-active: #bfc8d03a;
+  --burger-panel-bg-color-active-hover: rgba(191, 200, 208, 0.390);
+  --burger-panel-bg-color: rgb(19, 17, 19);
   --preloader-bg-color: #272527;
 }
 
@@ -32,6 +43,7 @@ html[data-theme="dark"] .main-panel {
 
 body {
   font-family: 'Nunito', sans-serif;
+  font-size: 14px;
   height: 100vh;
   margin: 0;
   padding: 0;
@@ -71,11 +83,12 @@ body {
   --forecast-card-bg-color: #a7b4bd21;
   --fade-color: #e5e4e6;
   --burger-icon-color: #bfc8d0;
-  --burger-icon-color-hover: #606e79;
-  --burger-panel-text-color: #606e79;
-  --burger-panel-text-color-hover: #ff6768;
+  --burger-icon-color-hover: #8394a3;
+  --burger-panel-text-color: #8999a5;
   --burger-panel-text-color-active: grey;
-  --burger-panel-bg-color-active: #bfc8d049;
+  --burger-panel-text-color-active-hover: rgb(51, 51, 51);
+  --burger-panel-bg-color-active: #bfc8d04d;
+  --burger-panel-bg-color-active-hover: #bfc8d0bb;
   --burger-panel-bg-color: #faf9ff;
   --preloader-bg-color: #f6f5fa;
 }
@@ -123,12 +136,12 @@ body {
 
 .main-panel .weather-info #temperature {
   font-family: 'Inconsolata', monospace;
-  font-size: 1.5em;
+  font-size: 1.6em;
 }
 
 .main-panel .weather-info #temperature-description {
   padding: .6em;
-  font-size: .9em;
+  font-size: 1.1em;
   color: var(--text-color-weather-description);
 }
 
@@ -189,30 +202,30 @@ body {
 
 .delay-025 {
   -webkit-animation-delay: .25s;
-  -moz-animation-delay: .25s;
-    -o-animation-delay: .25s;
-       animation-delay: .25s;
+     -moz-animation-delay: .25s;
+       -o-animation-delay: .25s;
+          animation-delay: .25s;
 }
 
 .delay-050 {
   -webkit-animation-delay: .50s;
-  -moz-animation-delay: .50s;
-    -o-animation-delay: .50s;
-       animation-delay: .50s;
+     -moz-animation-delay: .50s;
+       -o-animation-delay: .50s;
+          animation-delay: .50s;
 }
 
 .delay-075 {
   -webkit-animation-delay: .75s;
-  -moz-animation-delay: .75s;
-    -o-animation-delay: .75s;
-       animation-delay: .75s;
+     -moz-animation-delay: .75s;
+       -o-animation-delay: .75s;
+          animation-delay: .75s;
 }
 
 .delay-100 {
   -webkit-animation-delay: 1s;
-  -moz-animation-delay: 1s;
-    -o-animation-delay: 1s;
-       animation-delay: 1s;
+     -moz-animation-delay: 1s;
+       -o-animation-delay: 1s;
+          animation-delay: 1s;
 }
 
 @media only screen and (min-width: 835px) {
@@ -258,9 +271,9 @@ body {
             order: 3;
   }
   .main-panel #location, .main-panel #main-icon, .main-panel .weather-info {
-    -ms-grid-row-align: center;
     -webkit-align-self: center;
         -ms-flex-item-align: center;
+                -ms-grid-row-align: center;
             align-self: center;
   }
   .main-panel .weather-info {
