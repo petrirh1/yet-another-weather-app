@@ -211,10 +211,9 @@ function menu() {
 
 document.querySelector('.burger-icon').addEventListener('click', menu);
 document.addEventListener("click", closeMenu);
-document.addEventListener("ontouchstart", closeMenu);
+document.addEventListener("touchend", closeMenu);
 
 function closeMenu(e) {
-    console.log(e);
     if (burger_panel.contains(e.target) || burger_icon.contains(e.target)) {
         return;
     } else if (burger_panel.classList.contains('slide')) {
