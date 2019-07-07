@@ -1,8 +1,8 @@
 .burger-menu .burger-icon {
   position: absolute;
   z-index: 4;
-  top: 1em;
-  right: 1em;
+  top: 1.1em;
+  right: 1.1em;
   cursor: pointer;
 }
 
@@ -54,18 +54,18 @@
           transform: translateX(100%);
   transition: -webkit-transform .3s ease-in-out;
   transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out, -moz-transform .3s ease-in-out, -o-transform .3s ease-in-out;
-  font-size: .9em;
+  font-size: 1em;
 }
 
 .burger-menu .burger-panel .options {
   position: relative;
-  padding: 2em;
-  top: 2em;
+  padding: 1.5em;
+  top: 4em;
 }
 
 .burger-menu .burger-panel .options .options-wrapper {
   position: relative;
-  padding: 1em 1.5em;
+  padding: 3em 1.5em;
 }
 
 .burger-menu .burger-panel .options .options-wrapper .theme-options, .burger-menu .burger-panel .options .options-wrapper .unit-options {
@@ -89,7 +89,9 @@
 }
 
 .burger-menu .burger-panel .options .title {
-  font-size: 1em;
+  font-size: 1.1em;
+  margin: 0;
+  padding-left: 1em;
 }
 
 .burger-menu .burger-panel .options p {
@@ -103,7 +105,7 @@
 
 .burger-menu .burger-panel .options p:hover {
   color: var(--burger-panel-text-color);
-  background-color: var(--burger-panel-bg-color-active);
+  background-color: var(--burger-panel-btn-bg-color-active);
   -webkit-border-radius: .2em;
      -moz-border-radius: .2em;
           border-radius: .2em;
@@ -145,7 +147,7 @@
 
 .burger-menu .burger-panel footer a:hover {
   color: var(--burger-panel-text-color-link-hover);
-  background-color: var(--burger-panel-bg-color-active);
+  background-color: var(--burger-panel-btn-bg-color-active);
   -webkit-border-radius: .2em;
      -moz-border-radius: .2em;
           border-radius: .2em;
@@ -165,7 +167,7 @@
 
 .burger-menu .active {
   color: var(--burger-panel-text-color-active) !important;
-  background-color: var(--burger-panel-bg-color-active);
+  background-color: var(--burger-panel-btn-bg-color-active);
   -webkit-border-radius: .2em;
      -moz-border-radius: .2em;
           border-radius: .2em;
@@ -173,7 +175,7 @@
 
 .burger-menu .active:hover {
   color: var(--burger-panel-text-color-active-hover) !important;
-  background-color: var(--burger-panel-bg-color-active-hover) !important;
+  background-color: var(--burger-panel-btn-bg-color-active-hover) !important;
 }
 
 .burger-icon:hover .bar1, .burger-icon:hover .bar2, .burger-icon:hover .bar3 {
@@ -211,14 +213,12 @@
      -moz-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
-  padding: 1em;
-  margin-top: 4em;
+  padding: 2em;
   cursor: pointer;
 }
 
 .buttons #apply-btn, .buttons #cancel-btn {
   padding: .7em;
-  background-color: var(--burger-panel-bg-color-active);
   -webkit-border-radius: .3em;
      -moz-border-radius: .3em;
           border-radius: .3em;
@@ -229,12 +229,17 @@
   transition: all .3s ease-in-out;
 }
 
-#apply-btn:hover:not(.disabled), #cancel-btn:hover:not(.disabled) {
+.buttons #apply-btn {
+  background-color: var(--burger-panel-btn-bg-color-active);
+}
+
+.buttons #apply-btn:hover:not(.disabled), .buttons #cancel-btn:hover:not(.disabled) {
   color: var(--burger-panel-text-color-active-hover);
-  background-color: var(--burger-panel-bg-color-active-hover);
+  background-color: var(--burger-panel-btn-bg-color-active-hover);
 }
 
 .disabled {
   opacity: .45;
+  background-color: transparent !important;
 }
 /*# sourceMappingURL=burger.css.map */

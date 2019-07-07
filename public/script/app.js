@@ -5,10 +5,6 @@ const temperature_desc = document.getElementById('temperature-description');
 const weather_info = document.querySelector('.weather-info');
 const main_icon = document.getElementById("main-icon");
 const main_panel = document.querySelector('.main-panel');
-const day_1_content = document.getElementById('day-1-content');
-const day_2_content = document.getElementById('day-2-content');
-const day_3_content = document.getElementById('day-3-content');
-const day_4_content = document.getElementById('day-4-content');
 const day_1_weekday = document.getElementById("day-1-weekday");
 const day_2_weekday = document.getElementById("day-2-weekday");
 const day_3_weekday = document.getElementById("day-3-weekday");
@@ -25,24 +21,22 @@ const forecast = document.querySelector('.forecast');
 const forecast_card = document.querySelector('.forecast-card');
 const burger_icon = document.querySelector('.burger-icon');
 const burger_panel = document.querySelector('.burger-panel');
-const save_btn = document.getElementById('apply-btn');
+const apply_btn = document.getElementById('apply-btn');
 const cancel_btn = document.getElementById('cancel-btn');
 const light_theme_option = document.getElementById('light-theme-option');
 const dark_theme_option = document.getElementById('dark-theme-option');
 const celsius_option = document.getElementById('celsius-option');
 const fahrenheit_option = document.getElementById('fahrenheit-option');
-const current_theme = localStorage.getItem('theme');
-const current_unit = localStorage.getItem('unit');
 const preloader = document.getElementById('preloader');
 const light_color = '#606e79';
 const dark_color = '#FFF';
 const default_language = 'en';
+let theme = localStorage.getItem('theme');
+let unit = localStorage.getItem('unit');
 let language;
-let temp_unit;
-let theme;
 loadSettings();
 
-window.addEventListener("load", () => {
+document.addEventListener("DOMContentLoaded", () => {
     if ('geolocation' in navigator) {
         navigator.geolocation.getCurrentPosition(async function (position) {
             try {
@@ -57,7 +51,7 @@ window.addEventListener("load", () => {
                 language = shortenLangCode(language);
 
                 // api calls
-                const temp_u = temp_unit == 'celsius' ? 'metric' : 'imperial';
+                const temp_u = unit == 'celsius' ? 'metric' : 'imperial';
                 const weather = `weather/${lat},${lon},${language},${temp_u}`;
                 const forecast = `forecast/${lat},${lon},${language},${temp_u}`;
                 const response_weather = await fetch(weather);
@@ -160,14 +154,14 @@ function init() {
 
 /*********************** menu ***********************/
 
-save_btn.addEventListener('click', applySettings);
+apply_btn.addEventListener('click', applySettings);
 cancel_btn.addEventListener('click', applySettings);
 
 function applySettings(e) {
     if (e.target.classList.contains('disabled')) {
         return
     }
-    else if (save_btn.contains(e.target)) {
+    else if (apply_btn.contains(e.target)) {
         saveSettings();
     }
     else if (cancel_btn.contains(e.target)) {
@@ -177,7 +171,7 @@ function applySettings(e) {
 
 // monitor changes
 const observer = new MutationObserver((e) => {
-    save_btn.classList.remove('disabled');
+    apply_btn.classList.remove('disabled');
     cancel_btn.classList.remove('disabled');
 });
 
@@ -198,7 +192,6 @@ document.querySelector('div:not(.options-wrapper)').addEventListener('click', ()
 
 function toggleMenu() {
     loadSettings();
-
     burger_icon.classList.toggle('change');
     burger_panel.classList.toggle('slide');
     document.body.classList.toggle('fade');
@@ -254,7 +247,7 @@ function saveSettings() {
 function loadSettings() {
     const class_name = 'active';
     const els = document.getElementsByClassName(class_name);
-    save_btn.classList.add('disabled');
+    apply_btn.classList.add('disabled');
     cancel_btn.classList.add('disabled');
 
     // clear class 'active' from all elements
@@ -262,21 +255,21 @@ function loadSettings() {
         els[0].classList.remove(class_name);
     }
 
-    if (current_theme == 'light' || current_theme == null) { // == checks true also on undefined
+    theme = theme == 'light' || theme == null ? 'light' : 'dark';
+    unit = unit == 'celsius' || unit == null ? 'celsius' : 'fahrenheit';
+
+    if (theme == 'light') {
         light_theme_option.classList.toggle(class_name);
-        theme = 'light';
     } else {
         dark_theme_option.classList.toggle(class_name);
-        document.documentElement.setAttribute("data-theme", "dark");
-        theme = 'dark';
     }
-    if (current_unit == 'celsius' || current_unit == null) {
+    if (unit == 'celsius') {
         celsius_option.classList.toggle(class_name);
-        temp_unit = 'celsius';
     } else {
         fahrenheit_option.classList.toggle(class_name);
-        temp_unit = 'fahrenheit';
     }
+
+    document.documentElement.setAttribute("data-theme", theme);
 }
 
 function setIcon(id, iconID) {
@@ -324,11 +317,11 @@ function getMainIcon(id, sunset, sunrise) {
         else if (id >= 803 && id <= 804) {
             id = 'CLOUDY';
         } else {
-            throw Error('INVALID_ID');
+            throw Error('INVALID ID');
         }
         return id;
     }
-    throw Error('PARAMETER_IS_NaN');
+    throw Error('PARAMETER IS NaN');
 }
 
 function setWeekdays(locale) {
@@ -372,7 +365,7 @@ function getForecastIcon(id) {
         else if (id >= 801 && id <= 804) {
             icon = 'cloudy';
         } else {
-            throw Error('INVALID_ID');
+            throw Error('INVALID ID');
         }
         return icon += theme == 'light' ? '-light.svg' : '-dark.svg';
     }
@@ -381,7 +374,7 @@ function getForecastIcon(id) {
 function shortenLangCode(lang) {
     if (lang == null) {
         lang = default_language;
-        throw Error('INVALID_LANGUAGE_VALUE!');
+        throw Error('INVALID LANGUAGE VALUE');
     }
     else if (lang.includes("-")) {
         lang = lang.substring(0, lang.indexOf("-"));
