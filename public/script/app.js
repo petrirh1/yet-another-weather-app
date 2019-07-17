@@ -120,7 +120,7 @@ window.addEventListener("load", () => {
 function init() {
     preloader.classList.add('fade-out');
 
-    if (window.matchMedia("(max-width: 980px)").matches) {
+    if (window.matchMedia("(max-width: 835px)").matches) {
         location_name.classList.add('fade-in', 'delay-050');
         main_icon.classList.add('fade-in', 'delay-075');
         weather_info.classList.add('fade-in', 'delay-100');
@@ -135,7 +135,6 @@ function init() {
 
     const els_a = document.querySelectorAll('.forecast-card');
     els_a.forEach((element) => {
-        element.classList.remove('hidden');
         element.classList.add('fade-in', 'delay-050');
     });
 
@@ -148,12 +147,6 @@ function init() {
         preloader.className = '';
         main_panel.className = 'main-panel';
     }, 900);
-
-    document.addEventListener('keydown', (e) => { // disable tabulator
-        if (e.keycode === 9 || e.which === 9) {
-            e.preventDefault();
-        }
-    });
 }
 
 /*********************** menu ***********************/
@@ -196,13 +189,13 @@ document.querySelector('div:not(.options-wrapper)').addEventListener('click', ()
 
 function toggleMenu() {
     loadSettings();
-
     burger_icon.classList.toggle('change');
     burger_panel.classList.toggle('slide');
-    document.body.classList.toggle('fade');
-    forecast.classList.toggle('fade-in-opacity');
-    main_panel.classList.toggle('fade-in-opacity');
 
+    if (!window.matchMedia("(max-width: 835px)").matches) {
+        forecast.classList.toggle('fade-out-content');
+        main_panel.classList.toggle('fade-out-content');
+    }
 }
 
 document.querySelector('.burger-icon').addEventListener('click', toggleMenu);
@@ -410,3 +403,9 @@ function dpiScaling(el) { // canvas scaling
     canvas.style.height = `${height}px`;
     ctx.scale(pixelRatio, pixelRatio);
 }
+
+document.addEventListener('keydown', (e) => { // disable tabulator
+    if (e.keycode === 9 || e.which === 9) {
+        e.preventDefault();
+    }
+});

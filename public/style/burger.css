@@ -68,6 +68,10 @@
   padding: 3em 1.5em;
 }
 
+.burger-panel {
+  box-shadow: 0px 10px 13px -7px #00000015, 3px 14px 50px 0px rgba(0,0,0,0.03);
+}
+
 .burger-menu .burger-panel .options .options-wrapper .theme-options, .burger-menu .burger-panel .options .options-wrapper .unit-options {
   display: -webkit-box;
   display: -webkit-flex;

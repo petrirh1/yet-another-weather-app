@@ -14,7 +14,6 @@ html[data-theme="dark"] body {
   --main-panel-bg-color: rgba(20, 19, 20, 0.973);
   --weekday-text-color: #ffffff62;
   --forecast-card-bg-color: rgba(124, 120, 124, 0.100);
-  --fade-color: #1f1f22;
   --burger-icon-color: #474750;
   --burger-icon-color-hover: #5c5c63;
   --burger-panel-text-color: rgb(151, 151, 151);
@@ -71,7 +70,6 @@ body {
   --main-panel-bg-color: #fff;
   --weekday-text-color: #aab5be;
   --forecast-card-bg-color: #fff;
-  --fade-color: #e3e5e7;
   --burger-icon-color: #bfc8d0;
   --burger-icon-color-hover: #8394a3;
   --burger-panel-text-color: #8999a5;
@@ -84,6 +82,14 @@ body {
   --preloader-circle-bg-color: #d6dee7;
   --box-shadow-color: #d2d6df;
   --box-shadow-color-alt: #d2d6dfa4;
+}
+
+.main-panel, .forecast {
+  -webkit-transition: -webkit-filter 1s linear;
+  transition: -webkit-filter 1s linear;
+  -o-transition: filter 1s linear;
+  -moz-transition: filter 1s linear;
+  transition: filter 1s linear, -webkit-filter 1s linear;
 }
 
 .main-panel {
@@ -100,10 +106,6 @@ body {
      -moz-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-transition: opacity .3s linear;
-  -o-transition: opacity .3s linear;
-  -moz-transition: opacity .3s linear;
-  transition: opacity .3s linear;
 }
 
 .main-panel #main-icon {
@@ -161,23 +163,6 @@ body {
   font-size: .8em;
 }
 
-.main-panel .weather-info #wind-icon, .main-panel .weather-info #umbrella-icon {
-  width: 2em;
-  opacity: .8;
-  -webkit-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
-  -moz-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
-}
-
-.main-panel .weather-info #wind-speed, .main-panel .weather-info #rain-volume-qty {
-  opacity: .5;
-}
-
-.main-panel .weather-info #wind-speed, .main-panel .weather-info #rain-volume-qty {
-  padding: .5em .5em 0 .5em;
-}
-
 .main-panel .weather-info .unit {
   padding: 0;
   opacity: .3;
@@ -204,10 +189,6 @@ body {
   max-width: 420px;
   width: 90vw;
   font-size: 1.1em;
-  -webkit-transition: opacity .3s linear;
-  -o-transition: opacity .3s linear;
-  -moz-transition: opacity .3s linear;
-  transition: opacity .3s linear;
 }
 
 .forecast .weekday {
@@ -287,10 +268,6 @@ body {
   }
   .forecast .forecast-card {
     background-color: var(--forecast-card-bg-color);
-    -webkit-transition: background-color .4s ease-in;
-    -o-transition: background-color .4s ease-in;
-    -moz-transition: background-color .4s ease-in;
-    transition: background-color .4s ease-in;
     padding: 1.4em 2em 1.4em 2em;
     -webkit-border-radius: .3em;
        -moz-border-radius: .3em;
@@ -315,27 +292,9 @@ body {
   content: '°';
 }
 
-.fade {
-  background-color: var(--fade-color);
-}
-
-.fade-in-opacity {
-  opacity: .65;
-}
-
-.hidden, .visible {
-  -webkit-transition: opacity .4s ease-in;
-  -o-transition: opacity .4s ease-in;
-  -moz-transition: opacity .4s ease-in;
-  transition: opacity .4s ease-in;
-}
-
-.hidden {
-  opacity: 0;
-}
-
-.visible {
-  opacity: 1;
+.fade-out-content {
+  -webkit-filter: opacity(80%);
+          filter: opacity(80%);
 }
 
 .delay-025 {

@@ -15,7 +15,6 @@ html[data-theme="dark"] {
         --main-panel-bg-color: rgba(20, 19, 20, 0.973);
         --weekday-text-color: #ffffff62;
         --forecast-card-bg-color: rgba(124, 120, 124, 0.100);
-        --fade-color: #1f1f22;
         --burger-icon-color: #474750;
         --burger-icon-color-hover: #5c5c63;
         --burger-panel-text-color: rgb(151, 151, 151);
@@ -52,7 +51,6 @@ body {
     --main-panel-bg-color: #fff;
     --weekday-text-color: #aab5be;
     --forecast-card-bg-color: #fff;
-    --fade-color: #e3e5e7;
     --burger-icon-color: #bfc8d0;
     --burger-icon-color-hover: #8394a3;
     --burger-panel-text-color: #8999a5;
@@ -67,12 +65,14 @@ body {
     --box-shadow-color-alt: #d2d6dfa4;
 }
 
+.main-panel, .forecast {
+    transition: filter 1s linear;
+}
 
 .main-panel {
     display: inherit;
     flex-direction: column;
     align-items: center;
-    transition: opacity .3s linear;
     #main-icon { padding: 4em; }
     #location { font-size: 1.5em; }
     #location, .weather-info { text-align: center; }
@@ -104,20 +104,6 @@ body {
             font-size: .8em;
         }
 
-        #wind-icon, #umbrella-icon {
-            width: 2em;
-            opacity: .8;
-            transition: all 0.5s ease-in-out;
-        }
-
-        #wind-speed, #rain-volume-qty {
-            opacity: .5;
-        }
-
-        #wind-speed, #rain-volume-qty {
-            padding: .5em .5em 0 .5em;
-        }
-
         .unit {
             padding: 0;
             opacity: .3;
@@ -134,7 +120,6 @@ body {
     max-width: 420px;
     width: 90vw;
     font-size: 1.1em;
-    transition: opacity .3s linear;
 
     .weekday {
         color: var(--weekday-text-color);
@@ -155,7 +140,6 @@ body {
 }
 
 @media only screen and (min-width: 835px) {
-
     body {
         background-color: var(--bg-desktop);
         justify-content: flex-start;
@@ -190,7 +174,6 @@ body {
 
         .forecast-card {
             background-color: var(--forecast-card-bg-color);
-            transition: background-color .4s ease-in;
             padding: 1.4em 2em 1.4em 2em;
             border-radius: .3em;
             box-shadow: 0px 10px 13px -13px var(--box-shadow-color-alt), 5px 5px 15px 5px rgba(0,0,0,0);
@@ -200,11 +183,7 @@ body {
 
 ::selection { color: white; background: lightgrey; }
 .degree::after { content: '°'; }
-.fade { background-color: var(--fade-color); }
-.fade-in-opacity { opacity: .65; }
-.hidden, .visible { transition: opacity .4s ease-in; }
-.hidden { opacity: 0; }
-.visible { opacity: 1; }
+.fade-out-content { filter: opacity(80%); }
 .delay-025 { animation-delay: .25s }
 .delay-050 { animation-delay: .50s }
 .delay-075 { animation-delay: .75s }
