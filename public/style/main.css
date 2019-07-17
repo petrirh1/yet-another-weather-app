@@ -7,28 +7,26 @@ html, body {
 }
 
 html[data-theme="dark"] body {
-  --bg: #272527;
+  --bg: #1f1f22;
+  --bg-desktop: #242427;
   --text-color-main: white;
   --text-color-weather-description: rgb(145, 145, 145);
-  --main-panel-bg-color: rgb(19, 17, 19);
+  --main-panel-bg-color: rgba(20, 19, 20, 0.973);
   --weekday-text-color: #ffffff62;
   --forecast-card-bg-color: rgba(124, 120, 124, 0.100);
-  --fade-color: #222022;
-  --burger-icon-color: rgb(68, 65, 68);
-  --burger-icon-color-hover: rgb(105, 100, 105);
+  --fade-color: #1f1f22;
+  --burger-icon-color: #474750;
+  --burger-icon-color-hover: #5c5c63;
   --burger-panel-text-color: rgb(151, 151, 151);
   --burger-panel-text-color-active: #cecece;
   --burger-panel-text-color-active-hover: #ebebeb;
   --burger-panel-btn-bg-color-active: #bfc8d03a;
   --burger-panel-btn-bg-color-active-hover: rgba(191, 200, 208, 0.390);
   --burger-panel-bg-color: rgb(19, 17, 19);
-  --preloader-bg-color: #272527;
-}
-
-html[data-theme="dark"] .main-panel {
-  -webkit-box-shadow: none;
-     -moz-box-shadow: none;
-          box-shadow: none;
+  --preloader-bg-color: #1f1f22;
+  --preloader-circle-bg-color: rgba(124, 120, 124, 0.400);
+  --box-shadow-color: #000000cc;
+  --box-shadow-color-alt: #0000002d;
 }
 
 body {
@@ -66,13 +64,14 @@ body {
   -o-transition: background-color .5s ease-in-out;
   -moz-transition: background-color .5s ease-in-out;
   transition: background-color .5s ease-in-out;
-  --bg: #fcfbff;
-  --text-color-main: #606e79;
-  --text-color-weather-description: rgb(143, 143, 143);
-  --main-panel-bg-color: #ffffff48;
-  --weekday-text-color: #a3afb8;
-  --forecast-card-bg-color: #a7b4bd21;
-  --fade-color: #e5e4e6;
+  --bg: #f9fbfd;
+  --bg-desktop: #eff1f3;
+  --text-color-main: #6b727a;
+  --text-color-weather-description: #aab5be;
+  --main-panel-bg-color: #fff;
+  --weekday-text-color: #aab5be;
+  --forecast-card-bg-color: #fff;
+  --fade-color: #e3e5e7;
   --burger-icon-color: #bfc8d0;
   --burger-icon-color-hover: #8394a3;
   --burger-panel-text-color: #8999a5;
@@ -80,8 +79,11 @@ body {
   --burger-panel-text-color-active-hover: rgb(51, 51, 51);
   --burger-panel-btn-bg-color-active: #bfc8d04d;
   --burger-panel-btn-bg-color-active-hover: #bfc8d0bb;
-  --burger-panel-bg-color: #faf9ff;
-  --preloader-bg-color: #f6f5fa;
+  --burger-panel-bg-color: #fff;
+  --preloader-bg-color: #f9fbfd;
+  --preloader-circle-bg-color: #d6dee7;
+  --box-shadow-color: #d2d6df;
+  --box-shadow-color-alt: #d2d6dfa4;
 }
 
 .main-panel {
@@ -136,6 +138,51 @@ body {
   color: var(--text-color-weather-description);
 }
 
+.main-panel .weather-info .alt-weather-info {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+  -webkit-flex-direction: row-reverse;
+     -moz-box-orient: horizontal;
+     -moz-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  margin: auto;
+  width: 98px;
+}
+
+.main-panel .weather-info .wind-direction, .main-panel .weather-info .rain-volume {
+  padding: .7em;
+  letter-spacing: 2px;
+  font-size: .8em;
+}
+
+.main-panel .weather-info #wind-icon, .main-panel .weather-info #umbrella-icon {
+  width: 2em;
+  opacity: .8;
+  -webkit-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.main-panel .weather-info #wind-speed, .main-panel .weather-info #rain-volume-qty {
+  opacity: .5;
+}
+
+.main-panel .weather-info #wind-speed, .main-panel .weather-info #rain-volume-qty {
+  padding: .5em .5em 0 .5em;
+}
+
+.main-panel .weather-info .unit {
+  padding: 0;
+  opacity: .3;
+}
+
 .forecast {
   display: inherit;
   -webkit-box-orient: horizontal;
@@ -180,11 +227,11 @@ body {
 .forecast .forecast-card .forecast-icon {
   width: 1.9em;
   margin-top: 1em;
-  opacity: .8;
 }
 
 @media only screen and (min-width: 835px) {
   body {
+    background-color: var(--bg-desktop);
     -webkit-box-pack: start;
     -webkit-justify-content: flex-start;
        -moz-box-pack: start;
@@ -213,9 +260,9 @@ body {
             border-radius: .3em;
     word-break: break-word;
     background-color: var(--main-panel-bg-color);
-    -webkit-box-shadow: 0px 60px 125px 0px rgba(0, 0, 0, 0.07);
-       -moz-box-shadow: 0px 60px 125px 0px rgba(0, 0, 0, 0.07);
-            box-shadow: 0px 60px 125px 0px rgba(0, 0, 0, 0.07);
+    -webkit-box-shadow: 0px 10px 13px -13px var(--box-shadow-color), 5px 5px 15px 5px rgba(0, 0, 0, 0);
+       -moz-box-shadow: 0px 10px 13px -13px var(--box-shadow-color), 5px 5px 15px 5px rgba(0, 0, 0, 0);
+            box-shadow: 0px 10px 13px -13px var(--box-shadow-color), 5px 5px 15px 5px rgba(0, 0, 0, 0);
   }
   .main-panel #main-icon {
     padding: 0;
@@ -248,6 +295,9 @@ body {
     -webkit-border-radius: .3em;
        -moz-border-radius: .3em;
             border-radius: .3em;
+    -webkit-box-shadow: 0px 10px 13px -13px var(--box-shadow-color-alt), 5px 5px 15px 5px rgba(0, 0, 0, 0);
+       -moz-box-shadow: 0px 10px 13px -13px var(--box-shadow-color-alt), 5px 5px 15px 5px rgba(0, 0, 0, 0);
+            box-shadow: 0px 10px 13px -13px var(--box-shadow-color-alt), 5px 5px 15px 5px rgba(0, 0, 0, 0);
   }
 }
 
@@ -270,7 +320,7 @@ body {
 }
 
 .fade-in-opacity {
-  opacity: .7;
+  opacity: .65;
 }
 
 .hidden, .visible {

@@ -42,7 +42,7 @@
     -webkit-border-radius: 50%;
        -moz-border-radius: 50%;
             border-radius: 50%;
-    background-color: rgb(107, 102, 107);
+    background-color: var(--preloader-circle-bg-color);
     -webkit-animation: kick .6s infinite alternate;
             -moz-animation: kick .6s infinite alternate;
               -o-animation: kick .6s infinite alternate;

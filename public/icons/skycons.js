@@ -1,6 +1,12 @@
 (function (global) {
     "use strict";
 
+    const lightGrey = '#e6e8ec';
+    const darkGrey = '#64686c';
+    const yellow = '#ffaa75';
+    const lightBlue = '#5ee1f1';
+
+
     /* Set up a RequestAnimationFrame shim so we can animate efficiently FOR
      * GREAT JUSTICE. */
     var requestInterval, cancelInterval;
@@ -40,98 +46,96 @@
     }());
 
     /* Catmull-rom spline stuffs. */
-    /*
     function upsample(n, spline) {
-      var polyline = [],
-          len = spline.length,
-          bx  = spline[0],
-          by  = spline[1],
-          cx  = spline[2],
-          cy  = spline[3],
-          dx  = spline[4],
-          dy  = spline[5],
-          i, j, ax, ay, px, qx, rx, sx, py, qy, ry, sy, t;
+        var polyline = [],
+            len = spline.length,
+            bx = spline[0],
+            by = spline[1],
+            cx = spline[2],
+            cy = spline[3],
+            dx = spline[4],
+            dy = spline[5],
+            i, j, ax, ay, px, qx, rx, sx, py, qy, ry, sy, t;
 
-      for(i = 6; i !== spline.length; i += 2) {
-        ax = bx;
-        bx = cx;
-        cx = dx;
-        dx = spline[i    ];
-        px = -0.5 * ax + 1.5 * bx - 1.5 * cx + 0.5 * dx;
-        qx =        ax - 2.5 * bx + 2.0 * cx - 0.5 * dx;
-        rx = -0.5 * ax            + 0.5 * cx           ;
-        sx =                   bx                      ;
+        for (i = 6; i !== spline.length; i += 2) {
+            ax = bx;
+            bx = cx;
+            cx = dx;
+            dx = spline[i];
+            px = -0.5 * ax + 1.5 * bx - 1.5 * cx + 0.5 * dx;
+            qx = ax - 2.5 * bx + 2.0 * cx - 0.5 * dx;
+            rx = -0.5 * ax + 0.5 * cx;
+            sx = bx;
 
-        ay = by;
-        by = cy;
-        cy = dy;
-        dy = spline[i + 1];
-        py = -0.5 * ay + 1.5 * by - 1.5 * cy + 0.5 * dy;
-        qy =        ay - 2.5 * by + 2.0 * cy - 0.5 * dy;
-        ry = -0.5 * ay            + 0.5 * cy           ;
-        sy =                   by                      ;
+            ay = by;
+            by = cy;
+            cy = dy;
+            dy = spline[i + 1];
+            py = -0.5 * ay + 1.5 * by - 1.5 * cy + 0.5 * dy;
+            qy = ay - 2.5 * by + 2.0 * cy - 0.5 * dy;
+            ry = -0.5 * ay + 0.5 * cy;
+            sy = by;
 
-        for(j = 0; j !== n; ++j) {
-          t = j / n;
+            for (j = 0; j !== n; ++j) {
+                t = j / n;
 
-          polyline.push(
-            ((px * t + qx) * t + rx) * t + sx,
-            ((py * t + qy) * t + ry) * t + sy
-          );
+                polyline.push(
+                    ((px * t + qx) * t + rx) * t + sx,
+                    ((py * t + qy) * t + ry) * t + sy
+                );
+            }
         }
-      }
 
-      polyline.push(
-        px + qx + rx + sx,
-        py + qy + ry + sy
-      );
+        polyline.push(
+            px + qx + rx + sx,
+            py + qy + ry + sy
+        );
 
-      return polyline;
+        return polyline;
     }
 
     function downsample(n, polyline) {
-      var len = 0,
-          i, dx, dy;
+        var len = 0,
+            i, dx, dy;
 
-      for(i = 2; i !== polyline.length; i += 2) {
-        dx = polyline[i    ] - polyline[i - 2];
-        dy = polyline[i + 1] - polyline[i - 1];
-        len += Math.sqrt(dx * dx + dy * dy);
-      }
-
-      len /= n;
-
-      var small = [],
-          target = len,
-          min = 0,
-          max, t;
-
-      small.push(polyline[0], polyline[1]);
-
-      for(i = 2; i !== polyline.length; i += 2) {
-        dx = polyline[i    ] - polyline[i - 2];
-        dy = polyline[i + 1] - polyline[i - 1];
-        max = min + Math.sqrt(dx * dx + dy * dy);
-
-        if(max > target) {
-          t = (target - min) / (max - min);
-
-          small.push(
-            polyline[i - 2] + dx * t,
-            polyline[i - 1] + dy * t
-          );
-
-          target += len;
+        for (i = 2; i !== polyline.length; i += 2) {
+            dx = polyline[i] - polyline[i - 2];
+            dy = polyline[i + 1] - polyline[i - 1];
+            len += Math.sqrt(dx * dx + dy * dy);
         }
 
-        min = max;
-      }
+        len /= n;
 
-      small.push(polyline[polyline.length - 2], polyline[polyline.length - 1]);
+        var small = [],
+            target = len,
+            min = 0,
+            max, t;
 
-      return small;
+        small.push(polyline[0], polyline[1]);
+
+        for (i = 2; i !== polyline.length; i += 2) {
+            dx = polyline[i] - polyline[i - 2];
+            dy = polyline[i + 1] - polyline[i - 1];
+            max = min + Math.sqrt(dx * dx + dy * dy);
+
+            if (max > target) {
+                t = (target - min) / (max - min);
+
+                small.push(
+                    polyline[i - 2] + dx * t,
+                    polyline[i - 1] + dy * t
+                );
+
+                target += len;
+            }
+
+            min = max;
+        }
+
+        small.push(polyline[polyline.length - 2], polyline[polyline.length - 1]);
+
+        return small;
     }
-    */
 
     /* Define skycon things. */
     /* FIXME: I"m *really really* sorry that this code is so gross. Really, I am.
@@ -186,7 +190,7 @@
         ctx.fillStyle = color;
         puffs(ctx, t, cx, cy, a, b, c, d);
 
-        ctx.globalCompositeOperation = "destination-out";
+        //ctx.globalCompositeOperation = "destination-out";
         puffs(ctx, t, cx, cy, a, b, c - s, d - s);
         ctx.globalCompositeOperation = "source-over";
     }
@@ -199,13 +203,15 @@
             c = cw * 0.50 - s * 0.5,
             i, p, cos, sin;
 
-        ctx.strokeStyle = color;
+        ctx.strokeStyle = yellow;
         ctx.lineWidth = s;
         ctx.lineCap = "round";
         ctx.lineJoin = "round";
 
         ctx.beginPath();
         ctx.arc(cx, cy, a, 0, TAU, false);
+        ctx.fillStyle = yellow;
+        ctx.fill();
         ctx.stroke();
 
         for (i = 8; i--;) {
@@ -220,7 +226,7 @@
         t /= 15000;
 
         var a = cw * 0.29 - s * 0.5,
-            b = cw * 0.05,
+            b = cw * 0.0,
             c = Math.cos(t * TAU),
             p = c * TAU / -16;
 
@@ -235,18 +241,20 @@
         ctx.arc(cx, cy, a, p + TAU / 8, p + TAU * 7 / 8, false);
         ctx.arc(cx + Math.cos(p) * a * TWO_OVER_SQRT_2, cy + Math.sin(p) * a * TWO_OVER_SQRT_2, a, p + TAU * 5 / 8, p + TAU * 3 / 8, true);
         ctx.closePath();
+        ctx.fillStyle = color;
+        ctx.fill();
         ctx.stroke();
     }
 
     function rain(ctx, t, cx, cy, cw, s, color) {
         t /= 1350;
 
-        var a = cw * 0.16,
+        var a = cw * 0.26,
             b = TAU * 11 / 12,
             c = TAU * 7 / 12,
             i, p, x, y;
 
-        ctx.fillStyle = color;
+        ctx.fillStyle = lightBlue;
 
         for (i = 4; i--;) {
             p = (t + i / 4) % 1;
@@ -254,7 +262,7 @@
             y = cy + p * p * cw;
             ctx.beginPath();
             ctx.moveTo(x, y - s * 1.5);
-            ctx.arc(x, y, s * 0.75, b, c, false);
+            ctx.arc(x, y, s * 1.05, b, c, false);
             ctx.fill();
         }
     }
@@ -265,7 +273,7 @@
         var a = cw * 0.1875,
             i, p, x, y;
 
-        ctx.strokeStyle = color;
+        ctx.strokeStyle = lightBlue;
         ctx.lineWidth = s * 0.5;
         ctx.lineCap = "round";
         ctx.lineJoin = "round";
@@ -294,7 +302,7 @@
             wy = Math.sin(w) * b,
             i, p, x, y;
 
-        ctx.strokeStyle = color;
+        ctx.strokeStyle = lightGrey;
         ctx.lineWidth = s * 0.5;
         ctx.lineCap = "round";
         ctx.lineJoin = "round";
@@ -318,10 +326,10 @@
             c = cw * 0.21,
             d = cw * 0.28;
 
-        ctx.fillStyle = color;
+        ctx.fillStyle = lightGrey;
         puffs(ctx, t, cx, cy, a, b, c, d);
 
-        ctx.globalCompositeOperation = "destination-out";
+        //ctx.globalCompositeOperation = "destination-out";
         puffs(ctx, t, cx, cy, a, b, c - s, d - s);
         ctx.globalCompositeOperation = "source-over";
     }
@@ -389,8 +397,8 @@
             e = Math.cos(d),
             f = Math.sin(d);
 
-        ctx.fillStyle = color;
-        ctx.strokeStyle = color;
+        ctx.fillStyle = lightGrey;
+        ctx.strokeStyle = lightGrey;
         ctx.lineWidth = s;
         ctx.lineCap = "round";
         ctx.lineJoin = "round";
@@ -505,7 +513,7 @@
             h = ctx.canvas.height,
             s = Math.min(w, h);
 
-        sun(ctx, t, w * 0.5, h * 0.5, s, s * STROKE, color);
+        sun(ctx, t, w * 0.5, h * 0.5, s, s * STROKE, lightGrey);
     };
 
     Skycons.CLEAR_NIGHT = function (ctx, t, color) {
@@ -513,7 +521,7 @@
             h = ctx.canvas.height,
             s = Math.min(w, h);
 
-        moon(ctx, t, w * 0.5, h * 0.5, s, s * STROKE, color);
+        moon(ctx, t, w * 0.5, h * 0.5, s, s * STROKE, darkGrey);
     };
 
     Skycons.PARTLY_CLOUDY_DAY = function (ctx, t, color) {
@@ -521,8 +529,8 @@
             h = ctx.canvas.height,
             s = Math.min(w, h);
 
-        sun(ctx, t, w * 0.625, h * 0.375, s * 0.75, s * STROKE, color);
-        cloud(ctx, t, w * 0.375, h * 0.625, s * 0.75, s * STROKE, color);
+        sun(ctx, t, w * 0.610, h * 0.445, s * 0.75, s * STROKE, yellow);
+        cloud(ctx, t, w * 0.375, h * 0.625, s * 0.75, s * STROKE, lightGrey);
     };
 
     Skycons.PARTLY_CLOUDY_NIGHT = function (ctx, t, color) {
@@ -530,16 +538,16 @@
             h = ctx.canvas.height,
             s = Math.min(w, h);
 
-        moon(ctx, t, w * 0.667, h * 0.375, s * 0.75, s * STROKE, color);
-        cloud(ctx, t, w * 0.375, h * 0.625, s * 0.75, s * STROKE, color);
+        moon(ctx, t, w * 0.670, h * 0.444, s * 0.75, s * STROKE, darkGrey);
+        cloud(ctx, t, w * 0.375, h * 0.625, s * 0.70, s * STROKE, lightGrey);
     };
 
     Skycons.CLOUDY = function (ctx, t, color) {
         var w = ctx.canvas.width,
             h = ctx.canvas.height,
-            s = Math.min(w, h);
+            s = Math.min(w, h) - (w / 10);
 
-        cloud(ctx, t, w * 0.5, h * 0.5, s, s * STROKE, color);
+        cloud(ctx, t, w * 0.5, h * 0.5, s, s * STROKE, lightGrey);
     };
 
     Skycons.RAIN = function (ctx, t, color) {
@@ -547,8 +555,8 @@
             h = ctx.canvas.height,
             s = Math.min(w, h);
 
-        rain(ctx, t, w * 0.5, h * 0.37, s * 0.9, s * STROKE, color);
-        cloud(ctx, t, w * 0.5, h * 0.37, s * 0.9, s * STROKE, color);
+        rain(ctx, t, w * 0.5, h * 0.37, s * 0.9, s * STROKE, lightGrey);
+        cloud(ctx, t, w * 0.5, h * 0.37, s * 0.9, s * STROKE, lightGrey);
     };
 
     Skycons.SLEET = function (ctx, t, color) {
@@ -556,8 +564,8 @@
             h = ctx.canvas.height,
             s = Math.min(w, h);
 
-        sleet(ctx, t, w * 0.5, h * 0.37, s * 0.9, s * STROKE, color);
-        cloud(ctx, t, w * 0.5, h * 0.37, s * 0.9, s * STROKE, color);
+        sleet(ctx, t, w * 0.5, h * 0.37, s * 0.9, s * STROKE, lightGrey);
+        cloud(ctx, t, w * 0.5, h * 0.37, s * 0.9, s * STROKE, lightGrey);
     };
 
     Skycons.SNOW = function (ctx, t, color) {
@@ -565,8 +573,8 @@
             h = ctx.canvas.height,
             s = Math.min(w, h);
 
-        snow(ctx, t, w * 0.5, h * 0.37, s * 0.9, s * STROKE, color);
-        cloud(ctx, t, w * 0.5, h * 0.37, s * 0.9, s * STROKE, color);
+        snow(ctx, t, w * 0.5, h * 0.37, s * 0.9, s * STROKE, lightGrey);
+        cloud(ctx, t, w * 0.5, h * 0.37, s * 0.9, s * STROKE, lightGrey);
     };
 
     Skycons.WIND = function (ctx, t, color) {
@@ -574,8 +582,8 @@
             h = ctx.canvas.height,
             s = Math.min(w, h);
 
-        swoosh(ctx, t, w * 0.5, h * 0.5, s, s * STROKE, 0, 2, color);
-        swoosh(ctx, t, w * 0.5, h * 0.5, s, s * STROKE, 1, 2, color);
+        swoosh(ctx, t, w * 0.5, h * 0.5, s, s * STROKE, 0, 2, lightGrey);
+        swoosh(ctx, t, w * 0.5, h * 0.5, s, s * STROKE, 1, 2, lightGrey);
     };
 
     Skycons.FOG = function (ctx, t, color) {
@@ -584,9 +592,9 @@
             s = Math.min(w, h),
             k = s * STROKE;
 
-        fogbank(ctx, t, w * 0.5, h * 0.32, s * 0.75, k, color);
+        fogbank(ctx, t, w * 0.5, h * 0.32, s * 0.75, k, lightGrey);
 
-        t /= 5000;
+        t /= 3500;
 
         var a = Math.cos((t) * TAU) * s * 0.02,
             b = Math.cos((t + 0.25) * TAU) * s * 0.02,
@@ -596,13 +604,13 @@
             e = Math.floor(n - k * 0.5) + 0.5,
             f = Math.floor(n - k * 2.5) + 0.5;
 
-        ctx.strokeStyle = color;
+        ctx.strokeStyle = lightGrey;
         ctx.lineWidth = k;
         ctx.lineCap = "round";
         ctx.lineJoin = "round";
 
-        line(ctx, a + w * 0.2 + k * 0.5, e, b + w * 0.8 - k * 0.5, e);
-        line(ctx, c + w * 0.2 + k * 0.5, f, d + w * 0.8 - k * 0.5, f);
+        line(ctx, a + w * 0.2 + k * 0.5, e, b + w * 0.8 - k * 0.75, e);
+        line(ctx, c + w * 0.2 + k * 0.5, f, d + w * 0.8 - k * 0.35, f);
     };
 
     Skycons.prototype = {

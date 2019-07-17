@@ -1,0 +1,161 @@
+.burger-menu {
+    .burger-icon {
+      position: absolute;
+      z-index: 4;
+      top: 1.1em;
+      right: 1.1em;
+      cursor: pointer;
+      .bar1, .bar2, .bar3 {
+        position: relative;
+        z-index: 2;
+        width: 25px;
+        height: 3px;
+        background-color: var(--burger-icon-color);
+        border-radius: 2em;
+        margin: 4px 0;
+        transition: .2s ease-in, background-color .3s ease-out;
+      }
+    }
+    .burger-panel {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      position: absolute;
+      z-index: 3;
+      top: 0;
+      right: 0;
+      width: 18em;
+      height: 100%;
+      background-color: var(--burger-panel-bg-color);
+      transform: translateX(100%);
+      transition: -webkit-transform .3s ease-in-out;
+      transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out, -moz-transform .3s ease-in-out, -o-transform .3s ease-in-out;
+      font-size: 1em;
+      .options {
+        position: relative;
+        padding: 1.5em;
+        top: 4em;
+        .options-wrapper {
+          position: relative;
+          padding: 3em 1.5em;
+          .theme-options, .unit-options {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+          }
+        }
+        .title {
+          font-size: 1em;
+          margin: 0;
+          padding-left: 1em;
+        }
+        p {
+          padding: .5em;
+          transition: all .3s ease-in-out;
+          color: var(--burger-panel-text-color);
+          &:hover {
+            color: var(--burger-panel-text-color);
+            background-color: var(--burger-panel-btn-bg-color-active);
+            border-radius: .2em;
+            cursor: pointer;
+          }
+        }
+      }
+      footer {
+        display: inherit;
+        justify-content: center;
+        padding-bottom: 1em;
+        ul {
+          padding: 0;
+          margin: 0;
+          li {
+            list-style-type: none;
+            i {
+              font-size: 1.2em;
+            }
+          }
+        }
+        a {
+          text-decoration: none;
+          padding: .5em;
+          color: var(--burger-panel-text-color);
+          transition: .3s ease-in-out;
+          &:hover {
+            color: var(--burger-panel-text-color-link-hover);
+            background-color: var(--burger-panel-btn-bg-color-active);
+            border-radius: .2em;
+          }
+        }
+        .fa-github {
+          padding-left: .4em;
+        }
+      }
+    }
+    .slide {
+      transform: translateX(0);
+    }
+    .active {
+      color: var(--burger-panel-text-color-active) !important;
+      background-color: var(--burger-panel-btn-bg-color-active);
+      border-radius: .2em;
+      &:hover {
+        color: var(--burger-panel-text-color-active-hover) !important;
+        background-color: var(--burger-panel-btn-bg-color-active-hover) !important;
+      }
+    }
+  }
+  
+  .burger-icon:hover {
+    .bar1, .bar2, .bar3 {
+      background-color: var(--burger-icon-color-hover);
+    }
+  }
+  
+  .change {
+    .bar1 {
+      transform: rotate(45deg) translate(3px, 7px);
+    }
+    .bar2 {
+      opacity: 0;
+    }
+    .bar3 {
+      transform: rotate(-45deg) translate(3px, -7px);
+    }
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 2em;
+    cursor: pointer;
+
+    #apply-btn, #cancel-btn {
+      padding: .7em;
+      border-radius: .3em;
+      color: var(--burger-panel-text-color-active);
+      transition: all .3s ease-in-out;
+    }
+
+    #apply-btn {
+      background-color: var(--burger-panel-btn-bg-color-active);
+    }
+  
+    #apply-btn:hover:not(.disabled), #cancel-btn:hover:not(.disabled) {
+      color: var(--burger-panel-text-color-active-hover);
+      background-color: var(--burger-panel-btn-bg-color-active-hover);
+  }
+}
+
+.disabled {
+    opacity: .45;
+    background-color: transparent !important;
+}
+  /*# sourceMappingURL=burger.css.map */

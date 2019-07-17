@@ -88,11 +88,8 @@ window.addEventListener("load", () => {
                     const { id: day2_iconID } = filteredData[1].weather[0];
                     const { id: day3_iconID } = filteredData[2].weather[0];
                     const { id: day4_iconID } = filteredData[3].weather[0];
-                    const path = './icons/';
 
-                    setIcon(getMainIcon(id, sunset, sunrise), main_icon);
-                    setWeekdays(language);
-
+                    document.title = 'Weather in ' + name;
                     location_name.textContent = name;
                     temperature.textContent = Math.round(temp);
                     temperature_desc.textContent = description;
@@ -100,11 +97,12 @@ window.addEventListener("load", () => {
                     day_2_temp.textContent = Math.round(day2_temp);
                     day_3_temp.textContent = Math.round(day3_temp);
                     day_4_temp.textContent = Math.round(day4_temp);
-                    day_1_icon.src = path + getForecastIcon(day1_iconID);
-                    day_2_icon.src = path + getForecastIcon(day2_iconID);
-                    day_3_icon.src = path + getForecastIcon(day3_iconID);
-                    day_4_icon.src = path + getForecastIcon(day4_iconID);
-                    document.title = 'Weather in ' + name;
+                    setIcon(getMainIcon(day1_iconID, null, null), day_1_icon);
+                    setIcon(getMainIcon(day2_iconID, null, null), day_2_icon);
+                    setIcon(getMainIcon(day3_iconID, null, null), day_3_icon);
+                    setIcon(getMainIcon(day4_iconID, null, null), day_4_icon);
+                    setIcon(getMainIcon(id, sunset, sunrise), main_icon);
+                    setWeekdays(language);
 
                 } else {
                     console.error(`${cod_status}. ${cod_status_msg}`);
@@ -147,8 +145,8 @@ function init() {
     });
 
     setTimeout(() => {
-        preloader.className = ''; // removes preloader in order to make burger menu accessible
-        main_panel.className = 'main-panel'; // clears other classes
+        preloader.className = '';
+        main_panel.className = 'main-panel';
     }, 900);
 
     document.addEventListener('keydown', (e) => { // disable tabulator
@@ -202,11 +200,9 @@ function toggleMenu() {
     burger_icon.classList.toggle('change');
     burger_panel.classList.toggle('slide');
     document.body.classList.toggle('fade');
+    forecast.classList.toggle('fade-in-opacity');
+    main_panel.classList.toggle('fade-in-opacity');
 
-    if (document.documentElement.getAttribute('data-theme') == 'dark') {
-        forecast.classList.toggle('fade-in-opacity');
-        main_panel.classList.toggle('fade-in-opacity');
-    }
 }
 
 document.querySelector('.burger-icon').addEventListener('click', toggleMenu);
@@ -257,12 +253,11 @@ function loadSettings() {
     save_btn.classList.add('disabled');
     cancel_btn.classList.add('disabled');
 
-    // clear class 'active' from all elements
     while (els[0]) {
         els[0].classList.remove(class_name);
     }
 
-    if (current_theme == 'light' || current_theme == null) { // == checks true also on undefined
+    if (current_theme == 'light' || current_theme == null) {
         light_theme_option.classList.toggle(class_name);
         theme = 'light';
     } else {
@@ -291,8 +286,10 @@ function getMainIcon(id, sunset, sunrise) {
     let date = new Date(),
         hours = date.getHours();
 
-    sunset = new Date(sunset * 1000).getHours();
-    sunrise = new Date(sunrise * 1000).getHours();
+    if (sunset != null && sunrise != null) {
+        sunset = new Date(sunset * 1000).getHours();
+        sunrise = new Date(sunrise * 1000).getHours();
+    }
 
     if (typeof id === 'number') {
         if (id >= 200 && id <= 531) {
@@ -308,14 +305,14 @@ function getMainIcon(id, sunset, sunrise) {
             id = 'FOG';
         }
         else if (id == 800) {
-            if (hours >= sunset || hours <= sunrise) {
+            if (hours >= sunset && sunset != null || hours <= sunrise && sunrise != null) {
                 id = 'CLEAR_NIGHT';
             } else {
                 id = 'CLEAR_DAY';
             }
         }
         else if (id >= 801 && id <= 802) {
-            if (hours >= sunset || hours <= sunrise) {
+            if (hours >= sunset && sunset != null || hours <= sunrise && sunrise != null) {
                 id = 'PARTLY_CLOUDY_NIGHT';
             } else {
                 id = 'PARTLY_CLOUDY_DAY';
@@ -395,15 +392,21 @@ function filterData(data) {
     return data = data.list.filter((v) => (v.dt_txt.indexOf('15:00:00') !== -1 && v.dt_txt.match(regexp)[0] !== date_now));
 }
 
-(function dpiScaling() { // this is used for scaling canvas properly on mobile
-    const width = main_icon.width;
-    const height = main_icon.height;
+let icons = document.querySelectorAll('[id$="-icon"]');
+
+for (let i = 0; i < icons.length; ++i) {
+    dpiScaling(icons[i]);
+}
+
+function dpiScaling(el) { // canvas scaling
+    const width = el.width;
+    const height = el.height;
     const pixelRatio = window.devicePixelRatio || 1;
-    const ctx = main_icon.getContext("2d")
-    const canvas = main_icon;
+    const ctx = el.getContext("2d")
+    const canvas = el;
     canvas.width = width * pixelRatio;
     canvas.height = height * pixelRatio;
     canvas.style.width = `${width}px`;
     canvas.style.height = `${height}px`;
     ctx.scale(pixelRatio, pixelRatio);
-})();
+}
