@@ -152,7 +152,7 @@ function init() {
         preloader.className = '';
         main_panel.className = 'main-panel';
     }, 900);
-} npm
+}
 
 /*********************** menu ***********************/
 save_btn.addEventListener('click', applySettings);
