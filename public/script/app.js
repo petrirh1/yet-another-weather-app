@@ -111,9 +111,14 @@ window.addEventListener("load", () => {
             } catch (error) {
                 console.error(error);
             }
-        });
+        }, error);
     } else {
         console.error('geolocation not available!');
+    }
+    function error(err) {
+        // UNFINISHED!
+        console.warn(`ERROR(${err.code}): ${err.message}`);
+        document.body.style.display = 'none';
     }
 });
 
@@ -150,7 +155,6 @@ function init() {
 }
 
 /*********************** menu ***********************/
-
 save_btn.addEventListener('click', applySettings);
 cancel_btn.addEventListener('click', applySettings);
 
@@ -225,7 +229,6 @@ document.querySelector('.options-wrapper').addEventListener('click', (e) => {
         }
     }
 });
-
 /*********************** menu ends ***********************/
 
 function saveSettings() {
