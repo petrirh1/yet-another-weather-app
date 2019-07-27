@@ -1,5 +1,5 @@
 {
-    "name": "yet another weather app",
+    "name": "Yet Another Weather App",
     "short_name": "Weather",
     "icons": [
         {
@@ -13,7 +13,7 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#202020",
-    "background_color": "#202020",
+    "theme_color": "#000000",
+    "background_color": "#000000",
     "display": "standalone"
 }
