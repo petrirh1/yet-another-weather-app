@@ -43,7 +43,7 @@
   position: absolute;
   z-index: 3;
   top: 0;
-  right: 0;
+  right: -1em;
   width: 18em;
   height: 100%;
   background-color: var(--burger-panel-bg-color);
@@ -55,6 +55,9 @@
   transition: -webkit-transform .3s ease-in-out;
   transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out, -moz-transform .3s ease-in-out, -o-transform .3s ease-in-out;
   font-size: 1em;
+  -webkit-box-shadow: var(--burger-panel-shadow);
+     -moz-box-shadow: var(--burger-panel-shadow);
+          box-shadow: var(--burger-panel-shadow);
 }
 
 .burger-menu .burger-panel .options {
@@ -66,10 +69,6 @@
 .burger-menu .burger-panel .options .options-wrapper {
   position: relative;
   padding: 3em 1.5em;
-}
-
-.burger-panel {
-  box-shadow: 0px 10px 13px -7px #00000015, 3px 14px 50px 0px rgba(0,0,0,0.03);
 }
 
 .burger-menu .burger-panel .options .options-wrapper .theme-options, .burger-menu .burger-panel .options .options-wrapper .unit-options {
@@ -149,14 +148,6 @@
   transition: .3s ease-in-out;
 }
 
-.burger-menu .burger-panel footer a:hover {
-  color: var(--burger-panel-text-color-link-hover);
-  background-color: var(--burger-panel-btn-bg-color-active);
-  -webkit-border-radius: .2em;
-     -moz-border-radius: .2em;
-          border-radius: .2em;
-}
-
 .burger-menu .burger-panel footer .fa-github {
   padding-left: .4em;
 }
@@ -175,11 +166,6 @@
   -webkit-border-radius: .2em;
      -moz-border-radius: .2em;
           border-radius: .2em;
-}
-
-.burger-menu .active:hover {
-  color: var(--burger-panel-text-color-active-hover) !important;
-  background-color: var(--burger-panel-btn-bg-color-active-hover) !important;
 }
 
 .burger-icon:hover .bar1, .burger-icon:hover .bar2, .burger-icon:hover .bar3 {
@@ -245,5 +231,30 @@
 .disabled {
   opacity: .45;
   background-color: transparent !important;
+}
+
+@media only screen and (min-width: 835px) {
+  .burger-panel p:hover {
+    color: var(--burger-panel-text-color);
+    background-color: var(--burger-panel-btn-bg-color-active);
+    -webkit-border-radius: .2em;
+       -moz-border-radius: .2em;
+            border-radius: .2em;
+    cursor: pointer;
+  }
+  .burger-panel a:hover {
+    color: var(--burger-panel-text-color-link-hover);
+    background-color: var(--burger-panel-btn-bg-color-active);
+    -webkit-border-radius: .2em;
+       -moz-border-radius: .2em;
+            border-radius: .2em;
+  }
+  .burger-panel .active:hover {
+    color: var(--burger-panel-text-color-active-hover) !important;
+    background-color: var(--burger-panel-btn-bg-color-active-hover) !important;
+  }
+  .burger-icon:hover .bar1, .burger-icon:hover .bar2, .burger-icon:hover .bar3 {
+    background-color: var(--burger-icon-color-hover);
+  }
 }
 /*# sourceMappingURL=burger.css.map */

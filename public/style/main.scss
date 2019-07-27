@@ -8,8 +8,8 @@ html, body {
 
 html[data-theme="dark"] {
     body {
-        --bg: #1f1f22;
-        --bg-desktop: #242427;
+        --bg: #131218;
+        --bg-desktop: #1c1c22;
         --text-color-main: white;
         --text-color-weather-description: rgb(145, 145, 145);
         --main-panel-bg-color: rgba(20, 19, 20, 0.973);
@@ -24,9 +24,10 @@ html[data-theme="dark"] {
         --burger-panel-btn-bg-color-active-hover: rgba(191, 200, 208, 0.390);
         --burger-panel-bg-color: rgb(19, 17, 19);;
         --preloader-bg-color: #1f1f22;
+        --burger-panel-shadow: 0px 10px 13px -7px #000000, 4px 3px 7px 4px rgba(0, 0, 0, 0.123);
         --preloader-circle-bg-color: rgba(124, 120, 124, 0.400);;
-        --box-shadow-color: #000000cc;
-        --box-shadow-color-alt: #0000002d;
+        --box-shadow-color: #0a0a0cef;
+        --box-shadow-color-alt: #0a0a0c27;
     }
 }
 
@@ -59,6 +60,7 @@ body {
     --burger-panel-btn-bg-color-active: #bfc8d04d;
     --burger-panel-btn-bg-color-active-hover: #bfc8d0bb;
     --burger-panel-bg-color: #fff;
+    --burger-panel-shadow: 0px 10px 13px -7px #0000001e, 3px 14px 50px 0px rgba(0,0,0,0.05);
     --preloader-bg-color: #f9fbfd;
     --preloader-circle-bg-color: #d6dee7;
     --box-shadow-color: #d2d6df;
@@ -183,7 +185,7 @@ body {
 
 ::selection { color: white; background: lightgrey; }
 .degree::after { content: '°'; }
-.fade-out-content { filter: opacity(80%); }
+.fade-out-content { filter: grayscale(60%); }
 .delay-025 { animation-delay: .25s }
 .delay-050 { animation-delay: .50s }
 .delay-075 { animation-delay: .75s }

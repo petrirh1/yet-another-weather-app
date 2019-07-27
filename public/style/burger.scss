@@ -27,7 +27,7 @@
       position: absolute;
       z-index: 3;
       top: 0;
-      right: 0;
+      right: -1em;
       width: 18em;
       height: 100%;
       background-color: var(--burger-panel-bg-color);
@@ -35,6 +35,7 @@
       transition: -webkit-transform .3s ease-in-out;
       transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out, -moz-transform .3s ease-in-out, -o-transform .3s ease-in-out;
       font-size: 1em;
+      box-shadow: var(--burger-panel-shadow);
       .options {
         position: relative;
         padding: 1.5em;
@@ -88,11 +89,6 @@
           padding: .5em;
           color: var(--burger-panel-text-color);
           transition: .3s ease-in-out;
-          &:hover {
-            color: var(--burger-panel-text-color-link-hover);
-            background-color: var(--burger-panel-btn-bg-color-active);
-            border-radius: .2em;
-          }
         }
         .fa-github {
           padding-left: .4em;
@@ -106,10 +102,6 @@
       color: var(--burger-panel-text-color-active) !important;
       background-color: var(--burger-panel-btn-bg-color-active);
       border-radius: .2em;
-      &:hover {
-        color: var(--burger-panel-text-color-active-hover) !important;
-        background-color: var(--burger-panel-btn-bg-color-active-hover) !important;
-      }
     }
   }
   
@@ -157,5 +149,40 @@
 .disabled {
     opacity: .45;
     background-color: transparent !important;
+}
+
+@media only screen and (min-width: 835px) {
+
+  .burger-panel {
+    p {
+      &:hover {
+        color: var(--burger-panel-text-color);
+        background-color: var(--burger-panel-btn-bg-color-active);
+        border-radius: .2em;
+        cursor: pointer;
+      }
+    }
+
+    a {
+      &:hover {
+        color: var(--burger-panel-text-color-link-hover);
+        background-color: var(--burger-panel-btn-bg-color-active);
+        border-radius: .2em;
+      }
+    }
+
+    .active {
+      &:hover {
+        color: var(--burger-panel-text-color-active-hover) !important;
+        background-color: var(--burger-panel-btn-bg-color-active-hover) !important;
+      }
+    }
+}
+
+  .burger-icon:hover {
+    .bar1, .bar2, .bar3 {
+      background-color: var(--burger-icon-color-hover);
+    }
+  }
 }
   /*# sourceMappingURL=burger.css.map */
