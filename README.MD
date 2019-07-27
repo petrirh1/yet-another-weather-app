@@ -1,8 +1,6 @@
 # yet-another-weather-app
 
-yet-another-weather-app is a weather forecast app written in JavaScript.   
-It obtains your current location automatically, if you're not fine with this, you may just stop using it.
-Behaviour may change in near future.
+yet-another-weather-app is a weather forecast app written in JavaScript.
 <br>
 ![alt tag](https://i.imgur.com/0iu0FnW.png "this is just a screenshot")
 <br><br>
