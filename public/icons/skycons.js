@@ -1,11 +1,11 @@
 (function (global) {
     "use strict";
 
-    const lightGrey = '#e6e8ec';
-    const darkGrey = '#64686c';
+    const grey = '#e6e8ec';
     const yellow = '#ffaa75';
-    const lightBlue = '#5ee1f1';
-
+    const blue = '#5ee1f1';
+    const moonDark = '#3a3a42';
+    const moonLight = '#d2d5db';
 
     /* Set up a RequestAnimationFrame shim so we can animate efficiently FOR
      * GREAT JUSTICE. */
@@ -95,6 +95,7 @@
     }
 
     function downsample(n, polyline) {
+        1
         var len = 0,
             i, dx, dy;
 
@@ -203,14 +204,14 @@
             c = cw * 0.50 - s * 0.5,
             i, p, cos, sin;
 
-        ctx.strokeStyle = yellow;
+        ctx.strokeStyle = color;
         ctx.lineWidth = s;
         ctx.lineCap = "round";
         ctx.lineJoin = "round";
 
         ctx.beginPath();
         ctx.arc(cx, cy, a, 0, TAU, false);
-        ctx.fillStyle = yellow;
+        ctx.fillStyle = color;
         ctx.fill();
         ctx.stroke();
 
@@ -223,6 +224,7 @@
     }
 
     function moon(ctx, t, cx, cy, cw, s, color) {
+        color = color == 'dark' ? moonDark : moonLight;
         t /= 15000;
 
         var a = cw * 0.29 - s * 0.5,
@@ -254,7 +256,7 @@
             c = TAU * 7 / 12,
             i, p, x, y;
 
-        ctx.fillStyle = lightBlue;
+        ctx.fillStyle = color;
 
         for (i = 4; i--;) {
             p = (t + i / 4) % 1;
@@ -273,7 +275,7 @@
         var a = cw * 0.1875,
             i, p, x, y;
 
-        ctx.strokeStyle = lightBlue;
+        ctx.strokeStyle = color;
         ctx.lineWidth = s * 0.5;
         ctx.lineCap = "round";
         ctx.lineJoin = "round";
@@ -302,7 +304,7 @@
             wy = Math.sin(w) * b,
             i, p, x, y;
 
-        ctx.strokeStyle = lightGrey;
+        ctx.strokeStyle = color;
         ctx.lineWidth = s * 0.5;
         ctx.lineCap = "round";
         ctx.lineJoin = "round";
@@ -326,7 +328,7 @@
             c = cw * 0.21,
             d = cw * 0.28;
 
-        ctx.fillStyle = lightGrey;
+        ctx.fillStyle = color;
         puffs(ctx, t, cx, cy, a, b, c, d);
 
         //ctx.globalCompositeOperation = "destination-out";
@@ -397,8 +399,8 @@
             e = Math.cos(d),
             f = Math.sin(d);
 
-        ctx.fillStyle = lightGrey;
-        ctx.strokeStyle = lightGrey;
+        ctx.fillStyle = color;
+        ctx.strokeStyle = color;
         ctx.lineWidth = s;
         ctx.lineCap = "round";
         ctx.lineJoin = "round";
@@ -513,7 +515,7 @@
             h = ctx.canvas.height,
             s = Math.min(w, h);
 
-        sun(ctx, t, w * 0.5, h * 0.5, s, s * STROKE, lightGrey);
+        sun(ctx, t, w * 0.5, h * 0.5, s, s * STROKE, yellow);
     };
 
     Skycons.CLEAR_NIGHT = function (ctx, t, color) {
@@ -521,7 +523,7 @@
             h = ctx.canvas.height,
             s = Math.min(w, h);
 
-        moon(ctx, t, w * 0.5, h * 0.5, s, s * STROKE, darkGrey);
+        moon(ctx, t, w * 0.5, h * 0.5, s, s * STROKE, color);
     };
 
     Skycons.PARTLY_CLOUDY_DAY = function (ctx, t, color) {
@@ -530,7 +532,7 @@
             s = Math.min(w, h);
 
         sun(ctx, t, w * 0.610, h * 0.445, s * 0.75, s * STROKE, yellow);
-        cloud(ctx, t, w * 0.375, h * 0.625, s * 0.75, s * STROKE, lightGrey);
+        cloud(ctx, t, w * 0.375, h * 0.625, s * 0.75, s * STROKE, grey);
     };
 
     Skycons.PARTLY_CLOUDY_NIGHT = function (ctx, t, color) {
@@ -539,7 +541,7 @@
             s = Math.min(w, h);
 
         moon(ctx, t, w * 0.670, h * 0.444, s * 0.75, s * STROKE, darkGrey);
-        cloud(ctx, t, w * 0.375, h * 0.625, s * 0.70, s * STROKE, lightGrey);
+        cloud(ctx, t, w * 0.375, h * 0.625, s * 0.70, s * STROKE, color);
     };
 
     Skycons.CLOUDY = function (ctx, t, color) {
@@ -547,7 +549,7 @@
             h = ctx.canvas.height,
             s = Math.min(w, h) - (w / 10);
 
-        cloud(ctx, t, w * 0.5, h * 0.5, s, s * STROKE, lightGrey);
+        cloud(ctx, t, w * 0.5, h * 0.5, s, s * STROKE, grey);
     };
 
     Skycons.RAIN = function (ctx, t, color) {
@@ -555,8 +557,8 @@
             h = ctx.canvas.height,
             s = Math.min(w, h);
 
-        rain(ctx, t, w * 0.5, h * 0.37, s * 0.9, s * STROKE, lightGrey);
-        cloud(ctx, t, w * 0.5, h * 0.37, s * 0.9, s * STROKE, lightGrey);
+        rain(ctx, t, w * 0.5, h * 0.37, s * 0.9, s * STROKE, blue);
+        cloud(ctx, t, w * 0.5, h * 0.37, s * 0.9, s * STROKE, grey);
     };
 
     Skycons.SLEET = function (ctx, t, color) {
@@ -564,8 +566,8 @@
             h = ctx.canvas.height,
             s = Math.min(w, h);
 
-        sleet(ctx, t, w * 0.5, h * 0.37, s * 0.9, s * STROKE, lightGrey);
-        cloud(ctx, t, w * 0.5, h * 0.37, s * 0.9, s * STROKE, lightGrey);
+        sleet(ctx, t, w * 0.5, h * 0.37, s * 0.9, s * STROKE, blue);
+        cloud(ctx, t, w * 0.5, h * 0.37, s * 0.9, s * STROKE, grey);
     };
 
     Skycons.SNOW = function (ctx, t, color) {
@@ -573,8 +575,8 @@
             h = ctx.canvas.height,
             s = Math.min(w, h);
 
-        snow(ctx, t, w * 0.5, h * 0.37, s * 0.9, s * STROKE, lightGrey);
-        cloud(ctx, t, w * 0.5, h * 0.37, s * 0.9, s * STROKE, lightGrey);
+        snow(ctx, t, w * 0.5, h * 0.37, s * 0.9, s * STROKE, grey);
+        cloud(ctx, t, w * 0.5, h * 0.37, s * 0.9, s * STROKE, grey);
     };
 
     Skycons.WIND = function (ctx, t, color) {
@@ -582,8 +584,8 @@
             h = ctx.canvas.height,
             s = Math.min(w, h);
 
-        swoosh(ctx, t, w * 0.5, h * 0.5, s, s * STROKE, 0, 2, lightGrey);
-        swoosh(ctx, t, w * 0.5, h * 0.5, s, s * STROKE, 1, 2, lightGrey);
+        swoosh(ctx, t, w * 0.5, h * 0.5, s, s * STROKE, 0, 2, grey);
+        swoosh(ctx, t, w * 0.5, h * 0.5, s, s * STROKE, 1, 2, grey);
     };
 
     Skycons.FOG = function (ctx, t, color) {
@@ -592,7 +594,7 @@
             s = Math.min(w, h),
             k = s * STROKE;
 
-        fogbank(ctx, t, w * 0.5, h * 0.32, s * 0.75, k, lightGrey);
+        fogbank(ctx, t, w * 0.5, h * 0.32, s * 0.75, k, grey);
 
         t /= 3500;
 
@@ -604,7 +606,7 @@
             e = Math.floor(n - k * 0.5) + 0.5,
             f = Math.floor(n - k * 2.5) + 0.5;
 
-        ctx.strokeStyle = lightGrey;
+        ctx.strokeStyle = grey;
         ctx.lineWidth = k;
         ctx.lineCap = "round";
         ctx.lineJoin = "round";

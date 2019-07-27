@@ -152,7 +152,7 @@ function init() {
         preloader.className = '';
         main_panel.className = 'main-panel';
     }, 900);
-}
+} npm
 
 /*********************** menu ***********************/
 save_btn.addEventListener('click', applySettings);
@@ -171,7 +171,7 @@ function applySettings(e) {
 }
 
 // monitor changes
-const observer = new MutationObserver((e) => {
+const observer = new MutationObserver(() => {
     save_btn.classList.remove('disabled');
     cancel_btn.classList.remove('disabled');
 });
