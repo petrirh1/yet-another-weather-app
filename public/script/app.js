@@ -191,11 +191,8 @@ function toggleMenu() {
     loadSettings();
     burger_icon.classList.toggle('change');
     burger_panel.classList.toggle('slide');
-
-    if (!window.matchMedia("(max-width: 835px)").matches) {
-        forecast.classList.toggle('fade-out-content');
-        main_panel.classList.toggle('fade-out-content');
-    }
+    forecast.classList.toggle('fade-out-content');
+    main_panel.classList.toggle('fade-out-content');
 }
 
 document.querySelector('.burger-icon').addEventListener('click', toggleMenu);

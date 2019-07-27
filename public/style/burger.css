@@ -106,15 +106,6 @@
   color: var(--burger-panel-text-color);
 }
 
-.burger-menu .burger-panel .options p:hover {
-  color: var(--burger-panel-text-color);
-  background-color: var(--burger-panel-btn-bg-color-active);
-  -webkit-border-radius: .2em;
-     -moz-border-radius: .2em;
-          border-radius: .2em;
-  cursor: pointer;
-}
-
 .burger-menu .burger-panel footer {
   display: inherit;
   -webkit-box-pack: center;

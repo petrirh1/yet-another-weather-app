@@ -62,12 +62,6 @@
           padding: .5em;
           transition: all .3s ease-in-out;
           color: var(--burger-panel-text-color);
-          &:hover {
-            color: var(--burger-panel-text-color);
-            background-color: var(--burger-panel-btn-bg-color-active);
-            border-radius: .2em;
-            cursor: pointer;
-          }
         }
       }
       footer {
