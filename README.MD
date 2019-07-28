@@ -1,6 +1,6 @@
 # yet-another-weather-app
 
-yet-another-weather-app is a weather forecast app written in JavaScript.   
+yet-another-weather-app is a weather forecast app written in JavaScript.
 <br>
 ![alt tag](https://i.imgur.com/0iu0FnW.png "this is just a screenshot")
 <br><br>
