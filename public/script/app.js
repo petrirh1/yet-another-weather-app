@@ -117,8 +117,8 @@ window.addEventListener("load", () => {
     }
     function error(err) {
         // UNFINISHED!
-        console.warn(`ERROR(${err.code}): ${err.message}`);
-        document.body.style.display = 'none';
+        console.warn(`${err.message}`);
+        document.body.textContent = 'This application relies heavily on geolocation.';
     }
 });
 
