@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
@@ -30,7 +30,7 @@
         <div class="burger-panel">
             <div class="options">
                 <h5 class="title">options</h5>
-                <div class="options-wrapper">
+                <div class="options-container">
                     <div class="theme-options">
                         <p class="active" id="light-theme-option">light</p>
                         <p id="dark-theme-option">dark</p>
@@ -47,8 +47,8 @@
             </div>
             <footer>
                 <ul>
-                    <li><a href="https://github.com/petrirh1/yet-another-weather-app">view on <i
-                                class="fab fa-github"></i></a></li>
+                    <li><a href="https://github.com/petrirh1/yet-another-weather-app" tabindex="-1">view on <i
+                                class="fab fa-github" id="github-link"></i></a></li>
                 </ul>
             </footer>
         </div>
@@ -59,7 +59,7 @@
             <div id="temperature"></div>
             <div id="temperature-description"></div>
         </div>
-        <canvas id="main-icon" width="80" height="80"></canvas>
+        <canvas id="main-icon" width="75" height="75"></canvas>
     </div>
     <div class="forecast">
         <div class="forecast-card" id="day-1-forecast">

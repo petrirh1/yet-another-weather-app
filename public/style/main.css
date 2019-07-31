@@ -14,9 +14,9 @@ html[data-theme="dark"] body {
   --location-hover-color: #29293079;
   --main-panel-bg-color: #08080a;
   --weekday-text-color: #8e939b;
-  --forecast-card-bg-color: #292930;
-  --burger-icon-color: #43444bde;
-  --burger-icon-color-hover: #5f666d;
+  --forecast-card-bg-color: #26262c;
+  --burger-icon-color: #3a3a3f;
+  --burger-icon-color-hover: #51515a;
   --burger-panel-text-color: #a3abaf;
   --burger-panel-text-color-active: #a3abaf;
   --burger-panel-text-color-active-hover: #e1edf7;
@@ -24,7 +24,7 @@ html[data-theme="dark"] body {
   --burger-panel-btn-bg-color-active-hover: rgba(191, 200, 208, 0.390);
   --burger-panel-bg-color: #020202;
   --burger-panel-shadow: 0px 10px 13px -7px #000000, 4px 3px 7px 4px rgba(0, 0, 0, 0.123);
-  --preloader-bg-color: #131218;
+  --preloader-bg-color: var(--bg);
   --preloader-circle-bg-color: rgba(124, 120, 124, 0.400);
   --box-shadow-color: #0a0a0cef;
   --box-shadow-color-alt: #0a0a0c27;
@@ -81,20 +81,20 @@ body {
   --burger-panel-btn-bg-color-active: #bfc8d04d;
   --burger-panel-btn-bg-color-active-hover: #bfc8d0bb;
   --burger-panel-bg-color: #fff;
-  --burger-panel-shadow: 0px 10px 13px -7px #0000001e, 3px 14px 50px 0px rgba(0,0,0,0.05);
-  --preloader-bg-color: #f9fbfd;
+  --burger-panel-shadow: 2px 10px 13px -7px #0000001e, 3px 14px 50px 0px rgba(0,0,0,0.02);
+  --preloader-bg-color: var(--bg);
   --preloader-circle-bg-color: rgba(204, 196, 204, 0.801);
   --box-shadow-color: #d2d6df;
   --box-shadow-color-alt: #d2d6dfa4;
 }
 
 .main-panel, .forecast {
-  -webkit-transition: -webkit-filter 1s linear;
-  transition: -webkit-filter 1s linear;
-  -o-transition: filter 1s linear;
-  -moz-transition: filter 1s linear;
-  transition: filter 1s linear;
-  transition: filter 1s linear, -webkit-filter 1s linear;
+  -webkit-transition: -webkit-filter .8s ease-in-out;
+  transition: -webkit-filter .8s ease-in-out;
+  -o-transition: filter .8s ease-in-out;
+  -moz-transition: filter .8s ease-in-out;
+  transition: filter .8s ease-in-out;
+  transition: filter .8s ease-in-out, -webkit-filter .8s ease-in-out;
 }
 
 .main-panel {
@@ -216,7 +216,11 @@ body {
 }
 
 @media only screen and (min-width: 835px) {
+  html[data-theme="dark"] body {
+    --preloader-bg-color: var(--bg-desktop);
+  }
   body {
+    --preloader-bg-color: var(--bg-desktop);
     background-color: var(--bg-desktop);
     -webkit-box-pack: start;
     -webkit-justify-content: flex-start;
@@ -285,48 +289,69 @@ body {
 
 ::-moz-selection {
   color: white;
-  background: lightgrey;
+  background: #cbcdd3;
 }
 
 ::selection {
   color: white;
-  background: lightgrey;
+  background: #cbcdd3;
 }
 
 .degree::after {
   content: '°';
 }
 
-.fade-out-content {
-  -webkit-filter: grayscale(60%);
-          filter: grayscale(60%);
+.grayscale-content {
+  -webkit-filter: grayscale(50%);
+          filter: grayscale(50%);
 }
 
-.delay-025 {
-  -webkit-animation-delay: .25s;
-     -moz-animation-delay: .25s;
-       -o-animation-delay: .25s;
-          animation-delay: .25s;
+.delay-250 {
+  -webkit-animation-delay: 250ms;
+     -moz-animation-delay: 250ms;
+       -o-animation-delay: 250ms;
+          animation-delay: 250ms;
 }
 
-.delay-050 {
-  -webkit-animation-delay: .50s;
-     -moz-animation-delay: .50s;
-       -o-animation-delay: .50s;
-          animation-delay: .50s;
+.delay-500 {
+  -webkit-animation-delay: 500ms;
+     -moz-animation-delay: 500ms;
+       -o-animation-delay: 500ms;
+          animation-delay: 500ms;
 }
 
-.delay-075 {
-  -webkit-animation-delay: .75s;
-     -moz-animation-delay: .75s;
-       -o-animation-delay: .75s;
-          animation-delay: .75s;
+.delay-700 {
+  -webkit-animation-delay: 700ms;
+     -moz-animation-delay: 700ms;
+       -o-animation-delay: 700ms;
+          animation-delay: 700ms;
 }
 
-.delay-100 {
-  -webkit-animation-delay: 1s;
-     -moz-animation-delay: 1s;
-       -o-animation-delay: 1s;
-          animation-delay: 1s;
+.delay-750 {
+  -webkit-animation-delay: 750ms;
+     -moz-animation-delay: 750ms;
+       -o-animation-delay: 750ms;
+          animation-delay: 750ms;
+}
+
+.delay-800 {
+  -webkit-animation-delay: 800ms;
+     -moz-animation-delay: 800ms;
+       -o-animation-delay: 800ms;
+          animation-delay: 800ms;
+}
+
+.delay-900 {
+  -webkit-animation-delay: 900ms;
+     -moz-animation-delay: 900ms;
+       -o-animation-delay: 900ms;
+          animation-delay: 900ms;
+}
+
+.delay-1000 {
+  -webkit-animation-delay: 1000ms;
+     -moz-animation-delay: 1000ms;
+       -o-animation-delay: 1000ms;
+          animation-delay: 1000ms;
 }
 /*# sourceMappingURL=main.css.map */

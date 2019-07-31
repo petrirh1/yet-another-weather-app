@@ -34,8 +34,6 @@ const fahrenheit_option = document.getElementById('fahrenheit-option');
 const current_theme = localStorage.getItem('theme');
 const current_unit = localStorage.getItem('unit');
 const preloader = document.getElementById('preloader');
-const light_color = '#606e79';
-const dark_color = '#FFF';
 const default_language = 'en';
 let language;
 let temp_unit;
@@ -112,46 +110,42 @@ window.addEventListener("load", () => {
                 console.error(error);
             }
         }, error);
-    } else {
-        console.error('geolocation not available!');
     }
     function error(err) {
         // UNFINISHED!
         console.warn(`${err.message}`);
-        document.body.textContent = 'This application relies heavily on geolocation.';
+        document.body.textContent = 'Geolocation not available. This app relies heavily on it.';
     }
 });
 
 function init() {
+    const els_a = document.querySelectorAll('[id$="content"]');
+    const els_b = document.querySelectorAll('.temperature-alt');
     preloader.classList.add('fade-out');
 
     if (window.matchMedia("(max-width: 835px)").matches) {
-        location_name.classList.add('fade-in', 'delay-050');
-        main_icon.classList.add('fade-in', 'delay-075');
-        weather_info.classList.add('fade-in', 'delay-100');
+        location_name.classList.add('fade-in', 'delay-500');
+        main_icon.classList.add('fade-in', 'delay-750');
+        weather_info.classList.add('fade-in', 'delay-1000');
         temperature.classList.add('degree');
     } else {
-        location_name.classList.add('fade-in', 'delay-050');
-        weather_info.classList.add('fade-in', 'delay-075');
-        main_icon.classList.add('fade-in', 'delay-100');
-        main_panel.classList.add('fade-in-fast', 'delay-050');
+        location_name.classList.add('fade-in', 'delay-500');
+        weather_info.classList.add('fade-in', 'delay-750');
+        main_icon.classList.add('fade-in', 'delay-1000');
         temperature.classList.add('degree');
     }
 
-    const els_a = document.querySelectorAll('.forecast-card');
     els_a.forEach((element) => {
-        element.classList.add('fade-in', 'delay-050');
+        element.classList.add('fade-in', 'delay-700');
     });
 
-    const els_b = document.querySelectorAll('.temperature-alt');
     els_b.forEach((element) => {
         element.classList.add('degree');
     });
 
-    setTimeout(() => {
+    document.getElementById('preloader').addEventListener('animationend', () => {
         preloader.className = '';
-        main_panel.className = 'main-panel';
-    }, 900);
+    });
 }
 
 /*********************** menu ***********************/
@@ -176,8 +170,8 @@ const observer = new MutationObserver(() => {
     cancel_btn.classList.remove('disabled');
 });
 
-document.querySelector('.options-wrapper').addEventListener('click', () => {
-    observer.observe(document.querySelector('.options-wrapper'), {
+document.querySelector('.options-container').addEventListener('click', () => {
+    observer.observe(document.querySelector('.options-container'), {
         attributes: true,
         characterData: true,
         childList: true,
@@ -187,16 +181,24 @@ document.querySelector('.options-wrapper').addEventListener('click', () => {
     });
 });
 
-document.querySelector('div:not(.options-wrapper)').addEventListener('click', () => {
+document.querySelector('div:not(.options-container)').addEventListener('click', () => {
     observer.disconnect();
 });
 
 function toggleMenu() {
     loadSettings();
+    grayscale();
     burger_icon.classList.toggle('change');
-    burger_panel.classList.toggle('slide');
-    forecast.classList.toggle('fade-out-content');
-    main_panel.classList.toggle('fade-out-content');
+    burger_panel.classList.toggle('open-close');
+}
+
+function grayscale() {
+    main_panel.classList.toggle('grayscale-content');
+    const els = document.querySelectorAll('.forecast-icon');
+
+    els.forEach((element) => {
+        element.classList.toggle('fade-out-content');
+    });
 }
 
 document.querySelector('.burger-icon').addEventListener('click', toggleMenu);
@@ -206,12 +208,12 @@ document.addEventListener("touchend", closeMenu);
 function closeMenu(e) {
     if (burger_panel.contains(e.target) || burger_icon.contains(e.target)) {
         return;
-    } else if (burger_panel.classList.contains('slide')) {
+    } else if (burger_panel.classList.contains('open-close')) {
         toggleMenu();
     }
 }
 
-document.querySelector('.options-wrapper').addEventListener('click', (e) => {
+document.querySelector('.options-container').addEventListener('click', (e) => {
     if (light_theme_option.contains(e.target) || dark_theme_option.contains(e.target)) {
         if (e.target.classList.contains('active')) {
             return
@@ -232,7 +234,7 @@ document.querySelector('.options-wrapper').addEventListener('click', (e) => {
 /*********************** menu ends ***********************/
 
 function saveSettings() {
-    const active_els = document.querySelector('.options-wrapper').getElementsByClassName('active');
+    const active_els = document.querySelector('.options-container').getElementsByClassName('active');
     let theme_selection = active_els[0].id.split('-')[0];
     let unit_selection = active_els[1].id.split('-')[0];
     localStorage.setItem('theme', theme_selection);
@@ -269,7 +271,7 @@ function loadSettings() {
 
 function setIcon(id, iconID) {
     const skycons = new Skycons({
-        'color': theme == 'light' ? light_color : dark_color, 'resizeClear': true
+        'resizeClear': true
     });
     skycons.play();
     return skycons.set(iconID, Skycons[id]);
@@ -314,11 +316,11 @@ function getMainIcon(id, sunset, sunrise) {
         else if (id >= 803 && id <= 804) {
             id = 'CLOUDY';
         } else {
-            throw Error('INVALID_ID');
+            throw Error('INVALID ID');
         }
         return id;
     }
-    throw Error('PARAMETER_IS_NaN');
+    throw Error('PARAMETER IS NaN');
 }
 
 function setWeekdays(locale) {
@@ -343,35 +345,9 @@ function setWeekdays(locale) {
     day_4_weekday.textContent = day4.toLocaleDateString(locale, options);
 }
 
-function getForecastIcon(id) {
-    let icon;
-
-    if (typeof id === 'number') {
-        if (id >= 200 && id <= 611) {
-            icon = 'rain';
-        }
-        else if (id >= 600 && id <= 622) {
-            icon = 'snow';
-        }
-        else if (id >= 701 && id <= 781) {
-            icon = 'fog';
-        }
-        else if (id == 800) {
-            icon = 'sunny';
-        }
-        else if (id >= 801 && id <= 804) {
-            icon = 'cloudy';
-        } else {
-            throw Error('INVALID_ID');
-        }
-        return icon += theme == 'light' ? '-light.svg' : '-dark.svg';
-    }
-}
-
 function shortenLangCode(lang) {
     if (lang == null) {
         lang = default_language;
-        throw Error('INVALID_LANGUAGE_VALUE!');
     }
     else if (lang.includes("-")) {
         lang = lang.substring(0, lang.indexOf("-"));
@@ -403,9 +379,3 @@ function dpiScaling(el) { // canvas scaling
     canvas.style.height = `${height}px`;
     ctx.scale(pixelRatio, pixelRatio);
 }
-
-document.addEventListener('keydown', (e) => { // disable tabulator
-    if (e.keycode === 9 || e.which === 9) {
-        e.preventDefault();
-    }
-});

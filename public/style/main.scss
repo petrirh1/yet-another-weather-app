@@ -15,9 +15,9 @@ html[data-theme="dark"] {
         --location-hover-color: #29293079;
         --main-panel-bg-color: #08080a;
         --weekday-text-color: #8e939b;
-        --forecast-card-bg-color: #292930;
-        --burger-icon-color: #43444bde;
-        --burger-icon-color-hover: #5f666d;
+        --forecast-card-bg-color: #26262c;
+        --burger-icon-color: #3a3a3f;
+        --burger-icon-color-hover: #51515a;
         --burger-panel-text-color: #a3abaf;
         --burger-panel-text-color-active: #a3abaf;
         --burger-panel-text-color-active-hover: #e1edf7;
@@ -25,7 +25,7 @@ html[data-theme="dark"] {
         --burger-panel-btn-bg-color-active-hover: rgba(191, 200, 208, 0.390);
         --burger-panel-bg-color: #020202;
         --burger-panel-shadow: 0px 10px 13px -7px #000000, 4px 3px 7px 4px rgba(0, 0, 0, 0.123);
-        --preloader-bg-color: #131218;
+        --preloader-bg-color: var(--bg);
         --preloader-circle-bg-color: rgba(124, 120, 124, 0.400);;
         --box-shadow-color: #0a0a0cef;
         --box-shadow-color-alt: #0a0a0c27;
@@ -62,15 +62,16 @@ body {
     --burger-panel-btn-bg-color-active: #bfc8d04d;
     --burger-panel-btn-bg-color-active-hover: #bfc8d0bb;
     --burger-panel-bg-color: #fff;
-    --burger-panel-shadow: 0px 10px 13px -7px #0000001e, 3px 14px 50px 0px rgba(0,0,0,0.05);
-    --preloader-bg-color: #f9fbfd;
+    --burger-panel-shadow: 2px 10px 13px -7px #0000001e, 3px 14px 50px 0px rgba(0,0,0,0.02);
+    --preloader-bg-color: var(--bg);
     --preloader-circle-bg-color: rgba(204, 196, 204, 0.801);
     --box-shadow-color: #d2d6df;
     --box-shadow-color-alt: #d2d6dfa4;
 }
 
 .main-panel, .forecast {
-    transition: filter 1s linear;
+    transition: filter .8s ease-in-out;
+    
 }
 
 .main-panel {
@@ -144,10 +145,18 @@ body {
 }
 
 @media only screen and (min-width: 835px) {
+    html[data-theme="dark"] {
+        body {
+            --preloader-bg-color: var(--bg-desktop);
+        }
+    }
+
     body {
+        --preloader-bg-color: var(--bg-desktop);
         background-color: var(--bg-desktop);
         justify-content: flex-start;
     }
+    
     .main-panel {
         position: relative;
         display: inherit;
@@ -185,10 +194,13 @@ body {
     }
 }
 
-::selection { color: white; background: lightgrey; }
+::selection { color: white; background: #cbcdd3; }
 .degree::after { content: '°'; }
-.fade-out-content { filter: grayscale(60%); }
-.delay-025 { animation-delay: .25s }
-.delay-050 { animation-delay: .50s }
-.delay-075 { animation-delay: .75s }
-.delay-100 { animation-delay: 1s }
+.grayscale-content { filter: grayscale(50%); }
+.delay-250 { animation-delay: 250ms }
+.delay-500 { animation-delay: 500ms }
+.delay-700 { animation-delay: 700ms }
+.delay-750 { animation-delay: 750ms }
+.delay-800 { animation-delay: 800ms }
+.delay-900 { animation-delay: 900ms }
+.delay-1000 { animation-delay: 1000ms }
