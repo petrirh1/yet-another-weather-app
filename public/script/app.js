@@ -193,11 +193,12 @@ function toggleMenu() {
 }
 
 function grayscale() {
+    console.log('grayscale');
     main_panel.classList.toggle('grayscale-content');
     const els = document.querySelectorAll('.forecast-icon');
 
     els.forEach((element) => {
-        element.classList.toggle('fade-out-content');
+        element.classList.toggle('grayscale-content');
     });
 }
 
