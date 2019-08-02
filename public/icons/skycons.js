@@ -1,11 +1,11 @@
 (function (global) {
     "use strict";
 
-    const gray = '#e6e8ec';
+    const grey = '#e6e8ec';
     const yellow = '#ffaa75';
     const blue = '#5ee1f1';
-    const moonDark = '#3a3a42';
-    const moonLight = '#d2d5db';
+    const moonLight = '#cdd1d8';
+    const moonDark = '#66666f';
 
     /* Set up a RequestAnimationFrame shim so we can animate efficiently FOR
      * GREAT JUSTICE. */
@@ -188,7 +188,7 @@
             c = cw * 0.24,
             d = cw * 0.28;
 
-        ctx.fillStyle = color;
+        ctx.fillStyle = grey;
         puffs(ctx, t, cx, cy, a, b, c, d);
 
         //ctx.globalCompositeOperation = "destination-out";
@@ -224,7 +224,7 @@
     }
 
     function moon(ctx, t, cx, cy, cw, s, color) {
-        color = color == 'dark' ? moonDark : moonLight;
+        color = color === 'dark' ? moonDark : moonLight;
         t /= 15000;
 
         var a = cw * 0.29 - s * 0.5,
@@ -532,7 +532,7 @@
             s = Math.min(w, h);
 
         sun(ctx, t, w * 0.610, h * 0.445, s * 0.75, s * STROKE, yellow);
-        cloud(ctx, t, w * 0.375, h * 0.625, s * 0.75, s * STROKE, gray);
+        cloud(ctx, t, w * 0.375, h * 0.625, s * 0.75, s * STROKE, grey);
     };
 
     Skycons.PARTLY_CLOUDY_NIGHT = function (ctx, t, color) {
@@ -540,8 +540,8 @@
             h = ctx.canvas.height,
             s = Math.min(w, h);
 
-        moon(ctx, t, w * 0.670, h * 0.444, s * 0.75, s * STROKE, gray);
-        cloud(ctx, t, w * 0.375, h * 0.625, s * 0.70, s * STROKE, color);
+        moon(ctx, t, w * 0.670, h * 0.444, s * 0.75, s * STROKE, color);
+        cloud(ctx, t, w * 0.375, h * 0.625, s * 0.70, s * STROKE, grey);
     };
 
     Skycons.CLOUDY = function (ctx, t, color) {
@@ -549,7 +549,7 @@
             h = ctx.canvas.height,
             s = Math.min(w, h) - (w / 10);
 
-        cloud(ctx, t, w * 0.5, h * 0.5, s, s * STROKE, gray);
+        cloud(ctx, t, w * 0.5, h * 0.5, s, s * STROKE, grey);
     };
 
     Skycons.RAIN = function (ctx, t, color) {
@@ -558,7 +558,7 @@
             s = Math.min(w, h);
 
         rain(ctx, t, w * 0.5, h * 0.37, s * 0.9, s * STROKE, blue);
-        cloud(ctx, t, w * 0.5, h * 0.37, s * 0.9, s * STROKE, gray);
+        cloud(ctx, t, w * 0.5, h * 0.37, s * 0.9, s * STROKE, grey);
     };
 
     Skycons.SLEET = function (ctx, t, color) {
@@ -567,7 +567,7 @@
             s = Math.min(w, h);
 
         sleet(ctx, t, w * 0.5, h * 0.37, s * 0.9, s * STROKE, blue);
-        cloud(ctx, t, w * 0.5, h * 0.37, s * 0.9, s * STROKE, gray);
+        cloud(ctx, t, w * 0.5, h * 0.37, s * 0.9, s * STROKE, grey);
     };
 
     Skycons.SNOW = function (ctx, t, color) {
@@ -575,8 +575,8 @@
             h = ctx.canvas.height,
             s = Math.min(w, h);
 
-        snow(ctx, t, w * 0.5, h * 0.37, s * 0.9, s * STROKE, gray);
-        cloud(ctx, t, w * 0.5, h * 0.37, s * 0.9, s * STROKE, gray);
+        snow(ctx, t, w * 0.5, h * 0.37, s * 0.9, s * STROKE, grey);
+        cloud(ctx, t, w * 0.5, h * 0.37, s * 0.9, s * STROKE, grey);
     };
 
     Skycons.WIND = function (ctx, t, color) {
@@ -584,8 +584,8 @@
             h = ctx.canvas.height,
             s = Math.min(w, h);
 
-        swoosh(ctx, t, w * 0.5, h * 0.5, s, s * STROKE, 0, 2, gray);
-        swoosh(ctx, t, w * 0.5, h * 0.5, s, s * STROKE, 1, 2, gray);
+        swoosh(ctx, t, w * 0.5, h * 0.5, s, s * STROKE, 0, 2, grey);
+        swoosh(ctx, t, w * 0.5, h * 0.5, s, s * STROKE, 1, 2, grey);
     };
 
     Skycons.FOG = function (ctx, t, color) {
@@ -594,7 +594,7 @@
             s = Math.min(w, h),
             k = s * STROKE;
 
-        fogbank(ctx, t, w * 0.5, h * 0.32, s * 0.75, k, gray);
+        fogbank(ctx, t, w * 0.5, h * 0.32, s * 0.75, k, grey);
 
         t /= 3500;
 
@@ -606,7 +606,7 @@
             e = Math.floor(n - k * 0.5) + 0.5,
             f = Math.floor(n - k * 2.5) + 0.5;
 
-        ctx.strokeStyle = gray;
+        ctx.strokeStyle = grey;
         ctx.lineWidth = k;
         ctx.lineCap = "round";
         ctx.lineJoin = "round";

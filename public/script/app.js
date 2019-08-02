@@ -272,7 +272,7 @@ function loadSettings() {
 
 function setIcon(id, iconID) {
     const skycons = new Skycons({
-        'resizeClear': true
+        color: current_theme == 'dark' ? 'dark' : 'light', 'resizeClear': true
     });
     skycons.play();
     return skycons.set(iconID, Skycons[id]);
