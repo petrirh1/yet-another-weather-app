@@ -540,7 +540,7 @@
             h = ctx.canvas.height,
             s = Math.min(w, h);
 
-        moon(ctx, t, w * 0.670, h * 0.444, s * 0.75, s * STROKE, darkGrey);
+        moon(ctx, t, w * 0.670, h * 0.444, s * 0.75, s * STROKE, gray);
         cloud(ctx, t, w * 0.375, h * 0.625, s * 0.70, s * STROKE, color);
     };
 
