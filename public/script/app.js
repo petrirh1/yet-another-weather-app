@@ -55,7 +55,7 @@ window.addEventListener("load", () => {
                 language = shortenLangCode(language);
 
                 // api calls
-                const temp_u1 = temp_unit == 'celsius' ? 'metric' : 'imperial';
+                const temp_u = temp_unit == 'celsius' ? 'metric' : 'imperial';
                 const weather = `weather/${lat},${lon},${language},${temp_u}`;
                 const forecast = `forecast/${lat},${lon},${language},${temp_u}`;
                 const response_weather = await fetch(weather);
@@ -391,8 +391,4 @@ function dpiScaling(el) { // canvas scaling
             "href" in d && (d.href.indexOf("http") || ~d.href.indexOf(e.host)) && (a.preventDefault(), e.href = d.href)
         }, !1)
     }
-<<<<<<< HEAD
 })(document, window.navigator, "standalone")
-=======
-})(document, window.navigator, "standalone")
->>>>>>> 9095984d54f13812bea138fe54bc958d5801d6d0
