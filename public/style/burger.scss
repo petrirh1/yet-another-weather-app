@@ -99,12 +99,6 @@
     }
   }
   
-  .burger-icon:hover {
-    .bar1, .bar2, .bar3 {
-      background-color: var(--burger-icon-color-hover);
-    }
-  }
-  
   .change {
     .bar1 {
       transform: rotate(45deg) translate(3px, 7px);
