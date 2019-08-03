@@ -159,10 +159,6 @@
           border-radius: .2em;
 }
 
-.burger-icon:hover .bar1, .burger-icon:hover .bar2, .burger-icon:hover .bar3 {
-  background-color: var(--burger-icon-color-hover);
-}
-
 .change .bar1 {
   -webkit-transform: rotate(45deg) translate(3px, 7px);
      -moz-transform: rotate(45deg) translate(3px, 7px);
@@ -214,17 +210,15 @@
   background-color: var(--burger-panel-btn-bg-color-active);
 }
 
-.buttons #apply-btn:hover:not(.disabled), .buttons #cancel-btn:hover:not(.disabled) {
-  color: var(--burger-panel-text-color-active-hover);
-  background-color: var(--burger-panel-btn-bg-color-active-hover);
-}
-
 .disabled {
   opacity: .45;
   background-color: transparent !important;
 }
 
 @media only screen and (min-width: 835px) {
+  .burger-panel .burger-icon:hover .bar1, .burger-panel .burger-icon:hover .bar2, .burger-panel .burger-icon:hover .bar3 {
+    background-color: var(--burger-icon-color-hover);
+  }
   .burger-panel p:hover {
     color: var(--burger-panel-text-color);
     background-color: var(--burger-panel-btn-bg-color-active);
@@ -244,8 +238,9 @@
     color: var(--burger-panel-text-color-active-hover) !important;
     background-color: var(--burger-panel-btn-bg-color-active-hover) !important;
   }
-  .burger-icon:hover .bar1, .burger-icon:hover .bar2, .burger-icon:hover .bar3 {
-    background-color: var(--burger-icon-color-hover);
+  #apply-btn:hover:not(.disabled), #cancel-btn:hover:not(.disabled) {
+    color: var(--burger-panel-text-color-active-hover);
+    background-color: var(--burger-panel-btn-bg-color-active-hover);
   }
 }
 /*# sourceMappingURL=burger.css.map */

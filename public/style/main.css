@@ -161,12 +161,6 @@ body {
   width: 98px;
 }
 
-.main-panel .weather-info .wind-direction, .main-panel .weather-info .rain-volume {
-  padding: .7em;
-  letter-spacing: 2px;
-  font-size: .8em;
-}
-
 .main-panel .weather-info .unit {
   padding: 0;
   opacity: .3;

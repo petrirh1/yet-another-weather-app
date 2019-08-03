@@ -127,11 +127,6 @@
     #apply-btn {
       background-color: var(--burger-panel-btn-bg-color-active);
     }
-  
-    #apply-btn:hover:not(.disabled), #cancel-btn:hover:not(.disabled) {
-      color: var(--burger-panel-text-color-active-hover);
-      background-color: var(--burger-panel-btn-bg-color-active-hover);
-  }
 }
 
 .disabled {
@@ -142,6 +137,12 @@
 @media only screen and (min-width: 835px) {
 
   .burger-panel {
+    .burger-icon:hover {
+      .bar1, .bar2, .bar3 {
+        background-color: var(--burger-icon-color-hover);
+      }
+    }
+    
     p {
       &:hover {
         color: var(--burger-panel-text-color);
@@ -167,10 +168,9 @@
     }
 }
 
-  .burger-icon:hover {
-    .bar1, .bar2, .bar3 {
-      background-color: var(--burger-icon-color-hover);
-    }
+  #apply-btn:hover:not(.disabled), #cancel-btn:hover:not(.disabled) {
+    color: var(--burger-panel-text-color-active-hover);
+    background-color: var(--burger-panel-btn-bg-color-active-hover);
   }
 }
   /*# sourceMappingURL=burger.css.map */
