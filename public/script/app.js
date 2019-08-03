@@ -391,4 +391,8 @@ function dpiScaling(el) { // canvas scaling
             "href" in d && (d.href.indexOf("http") || ~d.href.indexOf(e.host)) && (a.preventDefault(), e.href = d.href)
         }, !1)
     }
+<<<<<<< HEAD
 })(document, window.navigator, "standalone")
+=======
+})(document, window.navigator, "standalone")
+>>>>>>> 9095984d54f13812bea138fe54bc958d5801d6d0
