@@ -95,11 +95,11 @@ window.addEventListener("load", () => {
                     day_2_temp.textContent = Math.round(day2_temp);
                     day_3_temp.textContent = Math.round(day3_temp);
                     day_4_temp.textContent = Math.round(day4_temp);
-                    setIcon(getMainIcon(day1_iconID, null, null), day_1_icon);
-                    setIcon(getMainIcon(day2_iconID, null, null), day_2_icon);
-                    setIcon(getMainIcon(day3_iconID, null, null), day_3_icon);
-                    setIcon(getMainIcon(day4_iconID, null, null), day_4_icon);
-                    setIcon(getMainIcon(id, sunset, sunrise), main_icon);
+                    setIcon(getIcon(day1_iconID, null, null), day_1_icon);
+                    setIcon(getIcon(day2_iconID, null, null), day_2_icon);
+                    setIcon(getIcon(day3_iconID, null, null), day_3_icon);
+                    setIcon(getIcon(day4_iconID, null, null), day_4_icon);
+                    setIcon(getIcon(id, sunset, sunrise), main_icon);
                     setWeekdays(language);
 
                 } else {
@@ -277,7 +277,7 @@ function setIcon(id, iconID) {
     return skycons.set(iconID, Skycons[id]);
 }
 
-function getMainIcon(id, sunset, sunrise) {
+function getIcon(id, sunset, sunrise) {
     let date = new Date(),
         hours = date.getHours();
 
@@ -367,7 +367,8 @@ for (let i = 0; i < icons.length; ++i) {
     dpiScaling(icons[i]);
 }
 
-function dpiScaling(el) { // canvas scaling
+// canvas scaling
+function dpiScaling(el) {
     const width = el.width;
     const height = el.height;
     const pixelRatio = window.devicePixelRatio || 1;

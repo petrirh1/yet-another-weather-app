@@ -45,7 +45,7 @@
   top: 0;
   right: -1em;
   width: 18em;
-  height: 100vh;
+  height: 100%;
   background-color: var(--burger-panel-bg-color);
   -webkit-transform: translateX(100%);
      -moz-transform: translateX(100%);
