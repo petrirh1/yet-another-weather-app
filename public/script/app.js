@@ -193,7 +193,6 @@ function toggleMenu() {
 }
 
 function grayscale() {
-    console.log('grayscale');
     main_panel.classList.toggle('grayscale-content');
     const els = document.querySelectorAll('.forecast-icon');
 
