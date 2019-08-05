@@ -112,7 +112,6 @@ window.addEventListener("load", () => {
         }, error);
     }
     function error(err) {
-        // UNFINISHED!
         console.warn(`${err.message}`);
         document.body.textContent = 'Geolocation not available. This app relies heavily on it.';
     }

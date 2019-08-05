@@ -93,6 +93,7 @@ body {
   transition: -webkit-filter .8s ease-in-out;
   -o-transition: filter .8s ease-in-out;
   -moz-transition: filter .8s ease-in-out;
+  transition: filter .8s ease-in-out;
   transition: filter .8s ease-in-out, -webkit-filter .8s ease-in-out;
 }
 
