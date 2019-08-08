@@ -113,7 +113,7 @@ window.addEventListener("load", () => {
     }
     function error(err) {
         console.warn(`${err.message}`);
-        document.body.textContent = 'Geolocation not available. This app relies heavily on it.';
+        document.body.innerHTML = 'Geolocation not available. This app relies heavily on it';
     }
 });
 
@@ -391,4 +391,5 @@ function dpiScaling(el) {
             "href" in d && (d.href.indexOf("http") || ~d.href.indexOf(e.host)) && (a.preventDefault(), e.href = d.href)
         }, !1)
     }
-})(document, window.navigator, "standalone")
+})(document, window.navigator, "standalone");
+
