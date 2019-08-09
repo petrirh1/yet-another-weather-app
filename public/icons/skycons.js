@@ -549,7 +549,7 @@
             h = ctx.canvas.height,
             s = Math.min(w, h) - (w / 10);
 
-        cloud(ctx, t, w * 0.5, h * 0.5, s, s * STROKE, grey);
+        cloud(ctx, t, w * 0.5, h * 0.4, s, s * STROKE, grey);
     };
 
     Skycons.RAIN = function (ctx, t, color) {
@@ -558,7 +558,7 @@
             s = Math.min(w, h);
 
         rain(ctx, t, w * 0.5, h * 0.37, s * 0.9, s * STROKE, blue);
-        cloud(ctx, t, w * 0.5, h * 0.37, s * 0.9, s * STROKE, grey);
+        cloud(ctx, t, w * 0.5, h * 0.39, s * 0.9, s * STROKE, grey);
     };
 
     Skycons.SLEET = function (ctx, t, color) {

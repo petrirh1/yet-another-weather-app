@@ -379,4 +379,3 @@ function dpiScaling(el) {
     canvas.style.height = `${height}px`;
     ctx.scale(pixelRatio, pixelRatio);
 }
-

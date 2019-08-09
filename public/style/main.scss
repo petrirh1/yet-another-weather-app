@@ -123,18 +123,17 @@ body {
 
     .weekday {
         color: var(--weekday-text-color);
-        padding-bottom: 1em;
-        font-size: .8em;
+        font-size: .85em;
     }
     .forecast-card {
         padding: 1em;
 
         .temperature-alt {
             font-family: 'Inconsolata', monospace;
+            padding: 1em 0 1.2em 0;
         }
         .forecast-icon { 
             width: 1.9em;
-            margin-top: 1em;
          }
     }
 }
